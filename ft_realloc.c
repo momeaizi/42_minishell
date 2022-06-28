@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/28 17:44:34 by momeaizi         ###   ########.fr       */
+/*   Created: 2022/06/28 16:20:46 by momeaizi          #+#    #+#             */
+/*   Updated: 2022/06/28 17:07:25 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+char	**ft_realloc(char **strs, char *str)
 {
-	while (1)
-	{
-		g_global.line = readline("minishell> ");
-		add_history(g_global.line);
-		if (!check_error())
-			continue ;
-		if (!g_global.line || !ft_strlen(g_global.line))
-			continue ;
-		// if (g_global.line)
-		g_global.line = add_spaces(g_global.line);
-		lexer(g_global.line);
-		free(g_global.line);
-		// system("leaks minishell");
-	}
+	char	**new_strs;
+	int		i;
+
+	i = -1;
+	new_strs = (char **)ft_calloc(size_double(strs) + 2, sizeof(char *));
+	if (!new_strs)
+		return (strs);
+	while (strs[++i])
+		new_strs[i] = strs[i];
+	new_strs[i] = str;
+	free(strs);
+	return (new_strs);
 }

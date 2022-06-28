@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:43:06 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/28 12:46:53 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:01:26 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,17 @@ int	size_double(char **cmds)
 		while (tokens[i][++j])
 			if (!tokens[i][j]->type)
 				read_from_heredoc(tokens[i][j]->type);
-		cmds = cmds->next;
+		g_global.cmds = g_global.cmds->next;
 	}
 }*/
 
-/*void	parse(t_token ***tokens)
+void	parser(t_token ***tokens)
 {
-	int	i;
-	int	j;
+	t_cmd	*tmp;
+	int		i;
+	int		j;
 
+	tmp = g_global.cmds;
 	i = -1;
 	while (tokens[++i])
 	{
@@ -50,17 +52,17 @@ int	size_double(char **cmds)
 		while (tokens[i][++j])
 		{
 			if (!tokens[i][j]->type)
-			add_to_args(tokens[i][j]->token);
-			else if (!tokens[i][j]->type == 1)
-			open_infile(tokens[i][j]->token);
-			else if (!tokens[i][j]->type == 2)
-			open_outfile(tokens[i][j]->token,0);
-			else if (!tokens[i][j]->type == 3)
-			open_outfile(tokens[i][j]->token,1);
+				tmp->args = ft_realloc(tmp->args, tokens[i][j]->token);
+			else if (tokens[i][j]->type == 1)
+				open_infile(tmp, tokens[i][j]->token);
+			else if (tokens[i][j]->type == 2)
+				open_outfile(tmp, tokens[i][j]->token, 0);
+			else if (tokens[i][j]->type == 3)
+				open_outfile(tmp, tokens[i][j]->token, 1);
 		}
-		cmds = cmds->next;
+		tmp = tmp->next;
 	}
-}*/
+}
 
 int	is_redirection(char *token)
 {
@@ -135,8 +137,9 @@ t_cmd	*lexer(char *line)
 		split(&sub_cmds[i], cmds[i], ' ');
 	tokens = tokenizer(sub_cmds, size);
 	specify_type(tokens);
+	create_list(size);
+	parser(tokens);
 	clear(cmds, size);
 	clear_triple(sub_cmds);
 	return (NULL);
 }
-	// create_cmds(size);
