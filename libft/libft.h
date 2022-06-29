@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:16:59 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/28 18:53:28 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/29 11:56:10 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <errno.h>
 # include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>

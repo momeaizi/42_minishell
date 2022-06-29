@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:43:06 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/28 18:45:52 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/29 20:56:33 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_token	***tokenizer(char ***sub_cmds, int size)
 	return (tokens);
 }
 
-t_cmd	*lexer(char *line)
+t_token	***lexer(char *line)
 {
 	int		size;
 	t_token	***tokens;
@@ -86,8 +86,7 @@ t_cmd	*lexer(char *line)
 	tokens = tokenizer(sub_cmds, size);
 	specify_type(tokens);
 	create_list(size);
-	parser(tokens);
 	clear(cmds, size);
 	clear_triple(sub_cmds);
-	return (NULL);
+	return (tokens);
 }
