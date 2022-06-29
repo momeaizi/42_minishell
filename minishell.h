@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/28 18:53:18 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/29 09:53:22 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # include "libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
 typedef struct s_token
 {
@@ -42,15 +42,18 @@ typedef struct s_cmd
 	int				out;
 	int				error;
 	char			*cmd;
+	char			*path;
 	char			**args;
 	struct s_cmd	*next;
 }					t_cmd;
 
 typedef struct s_global
 {
-	char			*line;
-	char			**env;
-	t_cmd			*cmds;
+	t_cmd	*cmds;
+	char	*line;
+	char	**env;
+	int		error;
+	int		doc_exit;
 }					t_global;
 
 t_global	g_global;
