@@ -6,12 +6,12 @@
 #    By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 18:05:01 by momeaizi          #+#    #+#              #
-#    Updated: 2022/06/28 17:43:54 by momeaizi         ###   ########.fr        #
+#    Updated: 2022/06/28 18:54:04 by momeaizi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = error.c main.c  utiles.c tokenizer.c unclosed_car.c add_spaces.c create_list.c open_file.c\
-	ft_realloc.c\
+SRC = error.c main.c  utiles.c tokenizer.c unclosed_car.c create_list.c open_file.c\
+	parser.c\
 	split/split.c split/clear.c split/count_tokens.c split/tokens_length.c split/replace.c\
 	
  

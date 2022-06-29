@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   size_double.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 13:19:33 by momeaizi          #+#    #+#             */
-/*   Updated: 2021/11/20 15:08:36 by momeaizi         ###   ########.fr       */
+/*   Created: 2022/06/28 18:46:01 by momeaizi          #+#    #+#             */
+/*   Updated: 2022/06/28 18:46:13 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+int	size_double(char **cmds)
 {
-	while (lst)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+	int	i;
+
+	i = -1;
+	while (cmds[++i])
+		;
+	return (i);
 }

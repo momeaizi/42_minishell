@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/28 16:59:56 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:53:18 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ t_global	g_global;
 
 void	replace_all_strings(char *str, char **strs, char new, char old);
 void	replace_inside_quotes(char *str, char new, char old);
+void	open_outfile(t_cmd *cmd, char *outfile, int append);
 int		skip_quotes(char *line, int i, char quote);
 char	*replace(char *str, char old, char new);
-void	open_outfile(t_cmd *cmd, char *outfile, int append);
-char	**ft_realloc(char	**strs, char *str);
 void	split(char ***tokens, char *s, char c);
 void	open_infile(t_cmd *cmd, char *infile);
 char	*join_readline_with_line(char *line);
@@ -70,11 +69,10 @@ int		count_tokens(char *str, char c);
 int		skip_space(char *line, int i);
 void	clear(char **paths, int j);
 void	clear_triple(char ***cmds);
+void	parser(t_token ***tokens);
 int		skip_brackets(char *line);
 int		size_double(char **cmds);
-size_t	ft_strlen(const char *s);
 char	*unclosed_brackets(void);
-char	*add_spaces(char *line);
 char	*unclosed_quotes(void);
 void	create_list(int size);
 t_cmd	*lexer(char *line);

@@ -6,11 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:54:51 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/28 11:02:24 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:54:27 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
 static int	need_space(char *line, int i)
 {

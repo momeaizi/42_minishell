@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:43:56 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/28 16:31:16 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:41:18 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	create_node(void)
 	node->in = 0;
 	node->out = 1;
 	node->cmd = NULL;
+	node->error = 0;
 	node->args = ft_calloc(1, sizeof(char *));
 	node->next = NULL;
 	if (g_global.cmds)
