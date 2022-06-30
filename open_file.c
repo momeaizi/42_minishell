@@ -6,27 +6,18 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:35:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/29 21:11:37 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:09:27 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	put_error(char *str, char *error)
-{
-	write(2, "minishell: ", 11);
-	write(2, str, ft_strlen(str));
-	write(2, ": ", 2);
-	write(2, error, ft_strlen(error));
-	write(2, "\n", 1);
-}
 
 void	open_infile(t_cmd *cmd, char *token, int index)
 {
 	char	*infile;
 	int		fd;
 
-	infile = expand_var(ft_strdup(token), 0);
+	infile = remove_quotes(expand_var(ft_strdup(token), 0));
 	if (!ft_strlen(infile) && ft_strlen(token))
 	{
 		put_error(token, "ambiguous redirect");
@@ -55,7 +46,7 @@ void	open_outfile(t_cmd *cmd, char *token, int append)
 	char	*outfile;
 	int		fd;
 
-	outfile = expand_var(ft_strdup(token), 0);
+	outfile = remove_quotes(expand_var(ft_strdup(token), 0));
 	if (!ft_strlen(outfile) && ft_strlen(token))
 	{
 		put_error(token, "ambiguous redirect");

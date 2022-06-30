@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:16:19 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 06:48:18 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/06/30 12:00:52 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ int	ft_env(t_cmd *cmd)
 		return (1);
 	while (g_global.env[++i])
 	{
-		write(cmd->out, g_global.env[i], ft_strlen(g_global.env[i]));
-		write(cmd->out, "\n", 1);
+		if (ft_strchr(g_global.env[i], '='))
+		{
+			write(cmd->out, g_global.env[i], ft_strlen(g_global.env[i]));
+			write(cmd->out, "\n", 1);
+		}
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/29 21:07:45 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:37:04 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	exec(void)
 	tmp = g_global.cmds;
 	while (tmp)
 	{
-		wait(NULL);
+		wait(&g_global.error);
 		tmp = tmp->next;
 	}
 }
@@ -153,7 +153,8 @@ void	clear_cmds(void)
 		i = -1;
 		current = g_global.cmds;
 		g_global.cmds = g_global.cmds->next;
-		free(current->path);
+		if (current->path)
+			free(current->path);
 		while (current->args[++i])
 			free(current->args[i]);
 		free(current->args);

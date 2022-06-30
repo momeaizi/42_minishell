@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/29 21:06:30 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:32:06 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	read_from_heredoc(t_cmd *cmd, char *delimiter)
 		free(line);
 	}
 	free(line);
+	free(delimiter);
 	exit(0);
 }
 
@@ -63,7 +64,7 @@ void	open_heredocs(t_token ***tokens)
 			if (tokens[i][j]->type == 4)
 			{
 				tmp->doc_index = i;
-				read_from_heredoc(tmp, tokens[i][j]->token);
+				read_from_heredoc(tmp, remove_quotes(expand_var(ft_strdup(tokens[i][j]->token), 0)));
 				wait(&g_global.doc_exit);
 			}
 		}
@@ -87,9 +88,9 @@ void	parser(t_token ***tokens)
 		{
 			if (!tokens[i][j]->type)
 			{
+				tmp->args = ft_realloc(tmp->args, remove_quotes(expand_var(ft_strdup(tokens[i][j]->token), 0)));
 				if (!tmp->args[0])
-					tmp->path = get_cmd_path(tokens[i][j]->token);
-				tmp->args = ft_realloc(tmp->args, ft_strdup(tokens[i][j]->token));
+					tmp->path = get_cmd_path(tmp->args[size_double(tmp->args) - 1]);
 			}
 			else if (tokens[i][j]->type == 1)
 				open_infile(tmp, tokens[i][j]->token, i);

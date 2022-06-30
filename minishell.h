@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 06:48:58 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/06/30 12:11:44 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_global	g_global;
 void	replace_all_strings(char *str, char **strs, char new, char old);
 void	replace_inside_quotes(char *str, char new, char old);
 void	open_outfile(t_cmd *cmd, char *token, int append);
+void	put_error_two(char *str, char *idt, char *error);
 void	open_infile(t_cmd *cmd, char *token, int index);
 int		skip_quotes(char *line, int i, char quote);
 char	*replace(char *str, char old, char new);
@@ -78,6 +79,7 @@ int		skip_space(char *line, int i);
 void	clear(char **paths, int j);
 void	clear_triple(char ***cmds);
 void	parser(t_token ***tokens);
+char	*remove_quotes(char *str);
 int		skip_brackets(char *line);
 int		size_double(char **cmds);
 char	*unclosed_brackets(void);
