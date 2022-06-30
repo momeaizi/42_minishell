@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:07:05 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/29 10:57:12 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/30 06:42:35 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ char	*get_cmd_path(char *cmd_name)
 	path = ft_strjoin("/", cmd_name);
 	return (search_in_path(path, paths));
 }
-
