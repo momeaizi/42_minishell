@@ -6,7 +6,7 @@
 /*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:13:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 06:48:14 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/01 18:09:51 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_n(char **args)
 	while (args[++i])
 	{
 		j = -1;
-		if (args[i][0] == '-')
+		if (args[i][0] == '-' && args[i][1] == 'n')
 			j++;
 		while (args[i][++j])
 			if (args[i][j] != 'n')
@@ -36,6 +36,8 @@ int	ft_echo(t_cmd *cmd)
 	int	j;
 
 	j = check_n(cmd->args);
+	if (!cmd->args[1][0])
+		j = 1;
 	i = j - 1;
 	while (cmd->args[++i])
 	{

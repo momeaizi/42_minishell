@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 22:27:07 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:05:17 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	open_heredocs(t_token ***tokens)
 				read_from_heredoc(tmp, remove_quotes(expand_var(\
 				ft_strdup(tokens[i][j]->token), 0)));
 				wait(&g_global.doc_exit);
+				g_global.doc_exit = WEXITSTATUS(g_global.doc_exit);
 			}
 		}
 		tmp = tmp->next;

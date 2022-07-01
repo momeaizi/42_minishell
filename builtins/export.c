@@ -6,7 +6,7 @@
 /*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:39:13 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/01 11:21:20 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:06:59 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ char	*join_val(char *val, char *var)
 	return (str);
 }
 
-int	check_var(char *var)
+int	check_var(char *var, char *val)
 {
 	int	i;
 
@@ -142,7 +142,7 @@ int	check_var(char *var)
 		return (1);
 	while (var[++i])
 	{
-		if (!var[i + 1] && var[i] == '+')
+		if (!var[i + 1] && var[i] == '+' && val)
 			break ;
 		if (!ft_isalnum(var[i]) && var[i] != '_')
 			return (1);
@@ -170,7 +170,7 @@ int	ft_export(t_cmd *cmd)
 			cmd->error = 1;
 			put_error_two("export", cmd->args[i], "not a valid identifier");
 		}
-		else if (check_var(var))
+		else if (check_var(var, val))
 		{
 			cmd->error = 1;
 			put_error_two("export", cmd->args[i], "not a valid identifier");

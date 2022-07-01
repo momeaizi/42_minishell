@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/01 15:52:59 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:22:01 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	check_cmds(char *command, t_cmd *cmd)
 		return (0);
 	if (!ft_strcmp("echo", command))
 		return (ft_echo(cmd));
+	else if (!ft_strcmp("cd", command))
+		return (ft_cd(cmd));
 	else if (!ft_strcmp("pwd", command))
 		return (ft_pwd(cmd));
 	else if (!ft_strcmp("export", command))
 		return (ft_export(cmd));
-	else if (!ft_strcmp("cd", command))
-		return (ft_cd(cmd));
 	else if (!ft_strcmp("unset", command))
 		return (ft_unset(cmd));
 	else if (!ft_strcmp("env", command))
@@ -61,7 +61,6 @@ char	**copy_env(char **env)
 	return (new_env);
 }
 
-
 void	exec(void)
 {
 	int		id;
@@ -71,10 +70,12 @@ void	exec(void)
 	while (tmp)
 	{
 		if (check_cmds(tmp->args[0], tmp))
-			exit(tmp->error);
+			return ;
 		id = fork();
 		if (!id)
-		{ 
+		{
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 			if (!tmp->error && tmp->path)
 			{
 				dup2(tmp->in, 0);
@@ -89,6 +90,7 @@ void	exec(void)
 			}
 			exit(tmp->error);
 		}
+		signal(SIGINT, SIG_IGN);
 		if (tmp->in != 0)
 			close(tmp->in);
 		if (tmp->out != 1)
@@ -117,10 +119,11 @@ int	main(int ac, char **av, char **env)
 	ac = 4;
 	av = NULL;
 	g_global.env = copy_env(env);
-	signal(SIGINT, sig_handler);
 	while (1)
 	{
 		g_global.line = readline("minishell> ");
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, sig_handler);
 		g_global.error = 0;
 		g_global.doc_exit = 0;
 		if (!g_global.line)
@@ -143,7 +146,7 @@ int	main(int ac, char **av, char **env)
 		clear_tokens(tokens);
 		clear_cmds();
 		free(g_global.line);
-		// system("leaks minishell");
+		system("leaks minishell");
 	}
 }
 
