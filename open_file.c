@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:35:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 15:09:27 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:23:24 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,10 @@ void	open_infile(t_cmd *cmd, char *token, int index)
 	free(infile);
 }
 
-void	open_outfile(t_cmd *cmd, char *token, int append)
+void	open_outfile(t_cmd *cmd, char *token, char *outfile, int append)
 {
-	char	*outfile;
 	int		fd;
 
-	outfile = remove_quotes(expand_var(ft_strdup(token), 0));
 	if (!ft_strlen(outfile) && ft_strlen(token))
 	{
 		put_error(token, "ambiguous redirect");

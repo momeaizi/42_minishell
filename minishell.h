@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 12:11:44 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/30 22:48:10 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ typedef struct s_global
 
 t_global	g_global;
 
+void	open_outfile(t_cmd *cmd, char *token, char *outfile, int append);
 void	replace_all_strings(char *str, char **strs, char new, char old);
 void	replace_inside_quotes(char *str, char new, char old);
-void	open_outfile(t_cmd *cmd, char *token, int append);
 void	put_error_two(char *str, char *idt, char *error);
 void	open_infile(t_cmd *cmd, char *token, int index);
 int		skip_quotes(char *line, int i, char quote);
@@ -69,6 +69,7 @@ char	*replace(char *str, char old, char new);
 char	*expand_var(char *str, char expand_all);
 void	split(char ***tokens, char *s, char c);
 char	*join_readline_with_line(char *line);
+int		check_env_var(t_cmd *cmd, char *env);
 int		*tokens_length(char *str, char c);
 void	put_error(char *str, char *error);
 char	**split_spaces(char *s, char c);

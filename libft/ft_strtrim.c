@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:20:08 by momeaizi          #+#    #+#             */
-/*   Updated: 2021/11/20 16:52:08 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/30 21:58:08 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+
 #include <stdlib.h>
+#include "libft.h"
 
 int	is_set(char c, char const *set)
 {

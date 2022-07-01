@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:26:40 by mskerba           #+#    #+#             */
-/*   Updated: 2022/06/27 07:10:26 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:20:48 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ char	*join_readline_with_line(char *line)
 	new_line = ft_strjoin(line, buf);
 	free(line);
 	free(buf);
-	return (new_line);
+	line = ft_strjoin(new_line, "\n");
+	free(new_line);
+	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:15:08 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 12:55:59 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/30 22:28:37 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int	ft_pwd(t_cmd *cmd)
 		return (1);
 	write(cmd->out, path, ft_strlen(path));
 	write(cmd->out, "\n", 1);
+	free(path);
 	return (1);
 }

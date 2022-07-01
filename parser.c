@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 12:32:06 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/06/30 22:27:07 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,32 @@ void	open_heredocs(t_token ***tokens)
 			if (tokens[i][j]->type == 4)
 			{
 				tmp->doc_index = i;
-				read_from_heredoc(tmp, remove_quotes(expand_var(ft_strdup(tokens[i][j]->token), 0)));
+				read_from_heredoc(tmp, remove_quotes(expand_var(\
+				ft_strdup(tokens[i][j]->token), 0)));
 				wait(&g_global.doc_exit);
 			}
 		}
 		tmp = tmp->next;
 	}
+}
+
+void	get_token_type(t_cmd *cmd, t_token *token, int j)
+{
+	if (!token->type)
+	{
+		cmd->args = ft_realloc(cmd->args, remove_quotes(\
+		expand_var(ft_strdup(token->token), 0)));
+		if (!cmd->args[1])
+			cmd->path = get_cmd_path(cmd->args[0]);
+	}
+	else if (token->type == 1)
+		open_infile(cmd, token->token, j);
+	else if (token->type == 2)
+		open_outfile(cmd, token->token, remove_quotes(\
+		expand_var(ft_strdup(token->token), 0)), 0);
+	else if (token->type == 3)
+		open_outfile(cmd, token->token, remove_quotes(\
+		expand_var(ft_strdup(token->token), 0)), 1);
 }
 
 void	parser(t_token ***tokens)
@@ -86,18 +106,7 @@ void	parser(t_token ***tokens)
 		j = -1;
 		while (tokens[i][++j] && !tmp->error)
 		{
-			if (!tokens[i][j]->type)
-			{
-				tmp->args = ft_realloc(tmp->args, remove_quotes(expand_var(ft_strdup(tokens[i][j]->token), 0)));
-				if (!tmp->args[0])
-					tmp->path = get_cmd_path(tmp->args[size_double(tmp->args) - 1]);
-			}
-			else if (tokens[i][j]->type == 1)
-				open_infile(tmp, tokens[i][j]->token, i);
-			else if (tokens[i][j]->type == 2)
-				open_outfile(tmp, tokens[i][j]->token, 0);
-			else if (tokens[i][j]->type == 3)
-				open_outfile(tmp, tokens[i][j]->token, 1);
+			get_token_type(tmp, tokens[i][j], j);
 		}
 		tmp = tmp->next;
 	}
