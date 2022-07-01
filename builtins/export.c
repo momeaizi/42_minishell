@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:39:13 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/01 08:39:42 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/01 11:21:20 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,34 @@ char	*join_val(char *val, char *var)
 	tmp = ft_strjoin(var, "=");
 	str = ft_getenv(var);
 	free(var);
-	var = ft_strjoin(tmp, str);
+	if (str)
+	{
+		var = ft_strjoin(tmp, str);
+		free(str);
+		str = ft_strjoin(var, val);
+	}
+	else
+		str = ft_strjoin(tmp, val);
 	free(tmp);
-	free(str);
-	str = ft_strjoin(var, val);
 	free(val);
 	return (str);
+}
+
+int	check_var(char *var)
+{
+	int	i;
+
+	i = -1;
+	if (ft_isdigit(var[0]))
+		return (1);
+	while (var[++i])
+	{
+		if (!var[i + 1] && var[i] == '+')
+			break ;
+		if (!ft_isalnum(var[i]) && var[i] != '_')
+			return (1);
+	}
+	return (0);
 }
 
 int	ft_export(t_cmd *cmd)
@@ -143,12 +165,26 @@ int	ft_export(t_cmd *cmd)
 		var = get_var(cmd->args[i]);
 		val = get_val(cmd->args[i]);
 		j = 0;
-		/*if(check_var())
+		if (cmd->args[i][0] == '=')
 		{
-			pu
-			return (1);
+			cmd->error = 1;
+			put_error_two("export", cmd->args[i], "not a valid identifier");
 		}
-		else */if (!val && is_duplicated(get_var(cmd->args[i])))
+		else if (check_var(var))
+		{
+			cmd->error = 1;
+			put_error_two("export", cmd->args[i], "not a valid identifier");
+		}
+		else if (var[ft_strlen(var) - 1] == '+')
+		{
+			var[ft_strlen(var) - 1] = 0;
+			val = join_val(val, ft_strdup(var));
+			if (ft_getenv(var))
+				we_unset(var);
+			printf("%s\n",var);
+			g_global.env = ft_realloc(g_global.env, ft_strdup(val));
+		}
+		else if (!val && is_duplicated(get_var(cmd->args[i])))
 		{
 			free(var);
 			free(val);
@@ -156,13 +192,6 @@ int	ft_export(t_cmd *cmd)
 		}
 		else if (var && !is_duplicated(get_var(cmd->args[i])))
 			g_global.env = ft_realloc(g_global.env, ft_strdup(cmd->args[i]));
-		else if (var[ft_strlen(var) - 1] == '+')
-		{
-			var[ft_strlen(var) - 1] = 0;
-			val = join_val(val, ft_strdup(var));
-			we_unset(var);
-			g_global.env = ft_realloc(g_global.env, ft_strdup(val));
-		}
 		else
 		{
 			we_unset(var);

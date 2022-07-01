@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:14:09 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 15:47:16 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/01 11:38:43 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static void	new_pwd(char *old_pwd, char *pwd)
 {
 	int	i;
+	int	flag;
 
+	flag = 1;
 	i = -1;
 	while (g_global.env[++i])
 	{
@@ -29,8 +31,11 @@ static void	new_pwd(char *old_pwd, char *pwd)
 		{
 			free(g_global.env[i]);
 			g_global.env[i] = old_pwd;
+			flag = 0;
 		}
 	}
+	if (flag)
+		g_global.env = ft_realloc(g_global.env, old_pwd);
 }
 
 void	change_pwd(void)

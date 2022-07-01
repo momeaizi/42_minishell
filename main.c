@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 22:25:00 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/01 15:52:59 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	check_cmds(char *command, t_cmd *cmd)
 		return (0);
 	if (!ft_strcmp("echo", command))
 		return (ft_echo(cmd));
-	else if (!ft_strcmp("cd", command))
-		return (ft_cd(cmd));
 	else if (!ft_strcmp("pwd", command))
 		return (ft_pwd(cmd));
 	else if (!ft_strcmp("export", command))
 		return (ft_export(cmd));
+	else if (!ft_strcmp("cd", command))
+		return (ft_cd(cmd));
 	else if (!ft_strcmp("unset", command))
 		return (ft_unset(cmd));
 	else if (!ft_strcmp("env", command))
@@ -61,6 +61,7 @@ char	**copy_env(char **env)
 	return (new_env);
 }
 
+
 void	exec(void)
 {
 	int		id;
@@ -70,10 +71,10 @@ void	exec(void)
 	while (tmp)
 	{
 		if (check_cmds(tmp->args[0], tmp))
-			return ;
+			exit(tmp->error);
 		id = fork();
 		if (!id)
-		{
+		{ 
 			if (!tmp->error && tmp->path)
 			{
 				dup2(tmp->in, 0);

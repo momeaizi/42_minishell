@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 22:48:10 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/01 11:49:02 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char	*remove_quotes(char *str);
 int		skip_brackets(char *line);
 int		size_double(char **cmds);
 char	*unclosed_brackets(void);
+int		list_size(t_cmd *cmds);
 char	*unclosed_quotes(void);
 char	*ft_getenv(char *var);
 void	create_list(int size);
