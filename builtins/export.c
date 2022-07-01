@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:39:13 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/01 08:23:00 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/01 08:39:42 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,21 +114,18 @@ void	we_unset(char *var_to_unset)
 
 char	*join_val(char *val, char *var)
 {
-	char	*new_var;
 	char	*str;
 	char	*tmp;
 
 	tmp = ft_strjoin(var, "=");
-	str = ft_strjoin("$", var);
+	str = ft_getenv(var);
 	free(var);
-	var = expand_var(str, 0);
-	str = ft_strjoin(tmp, var);
+	var = ft_strjoin(tmp, str);
 	free(tmp);
-	free(var);
-	new_var = ft_strjoin(str, val);
-	free(val);
 	free(str);
-	return (new_var);
+	str = ft_strjoin(var, val);
+	free(val);
+	return (str);
 }
 
 int	ft_export(t_cmd *cmd)

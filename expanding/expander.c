@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:03:52 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/01 08:22:40 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/01 08:31:52 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,12 @@ void	replace_var_by_val(char *str, t_expand_var *exp_var)
 		return ;
 	while (str[++i])
 	{
+		printf("out %s????\n", str + i);
 		is_quote(str[i], exp_var);
 		if (exp_var->expnd && str[i] == '$' && \
 		(ft_isalnum(str[i + 1]) || str[i + 1] == '_' || str[i + 1] == '?'))
 		{
-			printf("///%s | %s????\n", str + i, exp_var->new_str + j);
+			printf("In %s????\n", str + i);
 			ft_strlcpy(exp_var->new_str + j, exp_var->env_var[index].val, \
 			exp_var->env_var[index].val_len + 1);
 			i += exp_var->env_var[index].var_len;
@@ -90,6 +91,7 @@ void	expander(char *str, t_expand_var *exp_var, char expand_all)
 
 	i = -1;
 	index = 0;
+	printf("len is = %d\n", exp_var->new_str_len);
 	while (++i < exp_var->str_len)
 	{
 		if (str[i] == '\"')
