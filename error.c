@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:56:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 06:49:05 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/02 17:19:41 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int	check_pipe(int *i)
 	j = skip_space(g_global.line, *i);
 	if ((g_global.line[j] == '|' && j != *i + 1) || !g_global.line[j])
 	{
+		g_global.error = 258;
 		write(2, "minishell: syntax error near unexpected token `|'\n", 50);
 		return (0);
 	}
 	else if (g_global.line[*i + 1] == '|' && g_global.line[*i + 2] == '|')
 	{
+		g_global.error = 258;
 		write(2, "minishell: syntax error near unexpected token `|'\n", 50);
 		return (0);
 	}
@@ -39,11 +41,13 @@ int	check_and(int *i)
 	j = skip_space(g_global.line, *i + 1);
 	if (g_global.line[*i + 1] != '&' || !g_global.line[j])
 	{
+		g_global.error = 258;
 		write(2, "minishell: syntax error\n", 24);
 		return (0);
 	}
 	else if (g_global.line[*i + 2] == '&' || g_global.line[j] == '&')
 	{
+		g_global.error = 258;
 		write(2, "minishell: syntax error\n", 24);
 		return (0);
 	}
@@ -58,16 +62,28 @@ int	check_red(int *i)
 	j = skip_space(g_global.line, *i);
 	if (g_global.line[*i] + g_global.line[j] == 122 && \
 	abs(g_global.line[*i] - g_global.line[j]) == 2)
+	{
+		g_global.error = 258;
 		return (!write(2, "minishell: syntax error\n", 24));
+	}
 	else if ((g_global.line[*i] == g_global.line[j] && \
 	j != *i + 1) || !g_global.line[j])
+	{
+		g_global.error = 258;
 		return (!write(2, "minishell: syntax error\n", 24));
+	}
 	else if (g_global.line[*i + 1] == g_global.line[*i] && \
 	g_global.line[*i + 2] == g_global.line[*i])
+	{
+		g_global.error = 258;
 		return (!write(2, "minishell: syntax error\n", 24));
+	}
 	else if (g_global.line[j] == '|')
+	{
+		g_global.error = 258;
 		return (!write(2, "minishell: syntax error \
-		near unexpected token `|'\n", 50));
+			near unexpected token `|'\n", 50));
+	}
 	*i = j - 1;
 	return (1);
 }

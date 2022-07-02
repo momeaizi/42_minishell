@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/02 16:10:31 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:51:40 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	read_from_heredoc(t_cmd *cmd, char *delimiter)
 				close(pipes[1]);
 				break ;
 			}
-			if (!line)
-				exit(0);
 			write(pipes[1], line, ft_strlen(line));
 			write(pipes[1], "\n", 1);
 			free(line);

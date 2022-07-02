@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:14:09 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/01 11:38:43 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/02 17:27:25 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,15 @@ int	ft_cd(t_cmd *cmd)
 		ret = chdir(cmd->args[1]);
 	path = getcwd(NULL, 0);
 	if (!path)
-		write(2, "cd: error retrieving current directory: getcwd: cannot \
-			access parent directories: No such file or directory\n", 108);
+	{
+		write(2, "cd: error retrieving current directory: getcwd: cannot",54);
+		write(2, "access parent directories: No such file or directory\n", 53);
+	}
 	else if (ret < 0)
+	{
 		put_error_two("cd", cmd->args[1], strerror(errno));
+		cmd->error = 1;
+	}
 	if (path)
 		free(path);
 	change_pwd();
