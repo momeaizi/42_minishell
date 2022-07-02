@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:35:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 15:23:24 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/02 16:29:00 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ void	open_infile(t_cmd *cmd, char *token, int index)
 	{
 		if (cmd->in != 0 && index > cmd->doc_index)
 			close(cmd->in);
-		else if (index > cmd->doc_index)
+		if (index > cmd->doc_index)
 			cmd->in = fd;
+		else
+			close(fd);
 	}
 	free(infile);
 }

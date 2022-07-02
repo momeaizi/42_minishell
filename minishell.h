@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/02 08:20:34 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:26:04 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int		ft_export(t_cmd *cmd);
 t_token	***lexer(char *line);
 int		ft_unset(t_cmd *cmd);
 char	*get_var(char *args);
+void	sig_handler(int sig);
 char	*get_val(char *args);
 int		ft_echo(t_cmd *cmd);
 int		ft_exit(t_cmd *cmd);

@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/02 10:05:55 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:30:15 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ void	sig_handler(int sig)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-	}
-	else if (sig == SIGQUIT)
-	{
-		write(2, "\nQuit: 3\n", 9);
-		exit (131);
 	}
 }
 
@@ -79,11 +74,12 @@ void	exec(void)
 	}
 	while (tmp)
 	{
+		signal(SIGINT, SIG_IGN);
 		id = fork();
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, sig_handler);
 		if (!id)
 		{
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 			if (check_cmds(tmp->args[0], tmp))
 				exit(tmp->error);
 			if (!tmp->error && tmp->path)
@@ -100,8 +96,6 @@ void	exec(void)
 			}
 			exit(tmp->error);
 		}
-		// signal(SIGINT, SIG_IGN);
-		// signal(SIGQUIT, SIG_IGN);
 		if (tmp->in != 0)
 			close(tmp->in);
 		if (tmp->out != 1)
@@ -112,7 +106,10 @@ void	exec(void)
 	while (tmp)
 	{
 		wait(&g_global.error);
-		g_global.error = WEXITSTATUS(g_global.error);
+		if (g_global.error == 2 || g_global.error == 3)
+			g_global.error += 128;
+		else
+			g_global.error = WEXITSTATUS(g_global.error);
 		tmp = tmp->next;
 	}
 }
@@ -140,9 +137,9 @@ int	main(int ac, char **av, char **env)
 	g_global.error = 0;
 	while (1)
 	{
-		g_global.line = readline("minishell> ");
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, sig_handler);
+		g_global.line = readline("minishell> ");
 		g_global.doc_exit = 0;
 		if (!g_global.line)
 		{
@@ -160,7 +157,8 @@ int	main(int ac, char **av, char **env)
 		g_global.line = add_spaces(g_global.line);
 		tokens = lexer(g_global.line);
 		parser(tokens);
-		exec();
+		if (!g_global.doc_exit)
+			exec();
 		clear_tokens(tokens);
 		clear_cmds();
 		free(g_global.line);

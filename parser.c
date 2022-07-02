@@ -6,11 +6,12 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/02 07:22:10 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:10:31 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 void	heredoc_signal(int sig)
 {
@@ -27,28 +28,38 @@ void	read_from_heredoc(t_cmd *cmd, char *delimiter)
 
 	if (pipe(pipes) < 0)
 		return ;
+	if (cmd->in != 0)
+		close(cmd->in);
 	cmd->in = pipes[0];
+	signal(SIGINT, SIG_IGN);
 	id = fork();
-	close(pipes[1]);
-	if (id)
-		return ;
-	signal(SIGINT, &heredoc_signal);
-	while (1)
+	if (!id)
 	{
-		line = readline("> ");
-		if (!line)
-			exit(0);
-		if (!ft_strcmp(line, delimiter))
+		signal(SIGINT, &heredoc_signal);
+		while (1)
 		{
+			line = readline("> ");
+			if (!line || !ft_strcmp(line, delimiter))
+			{
+				if (line)
+					free(line);
+				close(pipes[0]);
+				close(pipes[1]);
+				break ;
+			}
+			if (!line)
+				exit(0);
+			write(pipes[1], line, ft_strlen(line));
+			write(pipes[1], "\n", 1);
 			free(line);
-			close(pipes[1]);
-			break ;
 		}
-		write(pipes[1], line, ft_strlen(line));
-		write(pipes[1], "\n", 1);
-		free(line);
+		exit(0);
 	}
-	exit(0);
+	else
+	{
+		close(pipes[1]);
+		return ;
+	}
 }
 
 void	open_heredocs(t_token ***tokens)
