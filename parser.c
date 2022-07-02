@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/01 17:05:17 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/02 07:22:10 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	read_from_heredoc(t_cmd *cmd, char *delimiter)
 		return ;
 	cmd->in = pipes[0];
 	id = fork();
+	close(pipes[1]);
 	if (id)
 		return ;
 	signal(SIGINT, &heredoc_signal);
@@ -38,36 +39,40 @@ void	read_from_heredoc(t_cmd *cmd, char *delimiter)
 		if (!line)
 			exit(0);
 		if (!ft_strcmp(line, delimiter))
+		{
+			free(line);
+			close(pipes[1]);
 			break ;
+		}
 		write(pipes[1], line, ft_strlen(line));
 		write(pipes[1], "\n", 1);
 		free(line);
 	}
-	free(line);
-	free(delimiter);
 	exit(0);
 }
 
 void	open_heredocs(t_token ***tokens)
 {
+	char	*delimiter;
 	t_cmd	*tmp;
 	int		j;
 	int		i;
 
 	tmp = g_global.cmds;
 	i = -1;
-	while (tokens[++i])
+	while (tokens[++i] && !g_global.doc_exit)
 	{
 		j = -1;
 		while (tokens[i][++j] && !g_global.doc_exit)
 		{
 			if (tokens[i][j]->type == 4)
 			{
+				delimiter = remove_quotes(expand_var(ft_strdup(tokens[i][j]->token), 0));
 				tmp->doc_index = i;
-				read_from_heredoc(tmp, remove_quotes(expand_var(\
-				ft_strdup(tokens[i][j]->token), 0)));
+				read_from_heredoc(tmp, delimiter);
 				wait(&g_global.doc_exit);
 				g_global.doc_exit = WEXITSTATUS(g_global.doc_exit);
+				free(delimiter);
 			}
 		}
 		tmp = tmp->next;
@@ -102,10 +107,10 @@ void	parser(t_token ***tokens)
 	open_heredocs(tokens);
 	tmp = g_global.cmds;
 	i = -1;
-	while (tokens[++i])
+	while (tokens[++i] && !g_global.doc_exit)
 	{
 		j = -1;
-		while (tokens[i][++j] && !tmp->error)
+		while (tokens[i][++j] && !tmp->error && !g_global.doc_exit)
 		{
 			get_token_type(tmp, tokens[i][j], j);
 		}

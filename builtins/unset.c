@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:15:42 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 14:25:16 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/02 08:09:33 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 int	check_env_var(t_cmd *cmd, char *env)
 {
-	int	len;
 	int	i;
+	char *var;
 
 	i = 0;
+	var = get_var(env);
 	while (cmd->args[++i])
-	{
-		len = ft_strlen(cmd->args[i]);
-		if (ft_strncmp(env, cmd->args[i], len) || env[len] != '=')
-			return (0);
-	}
-	return (1);
+		if (!ft_strcmp(var, cmd->args[i]))
+			return (1);
+	free(var);
+	return (0);
 }
 
 static int	is_valid(char *str)
@@ -32,11 +31,11 @@ static int	is_valid(char *str)
 	int	i;
 
 	i = -1;
+	if(ft_isdigit(str[0]))
+		return (0);
 	while (str[++i])
-	{
-		if (!ft_isalpha(str[i]) && str[i] != '_')
+		if (!ft_isalnum(str[i]) && str[i] != '_')
 			return (0);
-	}
 	return (1);
 }
 

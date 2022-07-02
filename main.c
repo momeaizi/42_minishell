@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/01 17:22:01 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/02 10:05:55 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	sig_handler(int sig)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
+	}
+	else if (sig == SIGQUIT)
+	{
+		write(2, "\nQuit: 3\n", 9);
+		exit (131);
 	}
 }
 
@@ -67,15 +72,20 @@ void	exec(void)
 	t_cmd	*tmp;
 
 	tmp = g_global.cmds;
+	if (!tmp->next && check_cmds(tmp->args[0], tmp))
+	{
+		g_global.error = tmp->error;
+		return ;
+	}
 	while (tmp)
 	{
-		if (check_cmds(tmp->args[0], tmp))
-			return ;
 		id = fork();
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, sig_handler);
 		if (!id)
 		{
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
+			if (check_cmds(tmp->args[0], tmp))
+				exit(tmp->error);
 			if (!tmp->error && tmp->path)
 			{
 				dup2(tmp->in, 0);
@@ -90,11 +100,17 @@ void	exec(void)
 			}
 			exit(tmp->error);
 		}
-		signal(SIGINT, SIG_IGN);
+		// signal(SIGINT, SIG_IGN);
+		// signal(SIGQUIT, SIG_IGN);
 		if (tmp->in != 0)
 			close(tmp->in);
 		if (tmp->out != 1)
 			close(tmp->out);
+		tmp = tmp->next;
+	}
+	tmp = g_global.cmds;
+	while (tmp)
+	{
 		wait(&g_global.error);
 		g_global.error = WEXITSTATUS(g_global.error);
 		tmp = tmp->next;
@@ -112,19 +128,21 @@ int	is_space(char *str)
 	return (1);
 }
 
+
 int	main(int ac, char **av, char **env)
 {
 	t_token	***tokens;
+	
 
 	ac = 4;
 	av = NULL;
 	g_global.env = copy_env(env);
+	g_global.error = 0;
 	while (1)
 	{
 		g_global.line = readline("minishell> ");
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, sig_handler);
-		g_global.error = 0;
 		g_global.doc_exit = 0;
 		if (!g_global.line)
 		{
@@ -146,7 +164,7 @@ int	main(int ac, char **av, char **env)
 		clear_tokens(tokens);
 		clear_cmds();
 		free(g_global.line);
-		system("leaks minishell");
+		// system("leaks minishell");
 	}
 }
 
