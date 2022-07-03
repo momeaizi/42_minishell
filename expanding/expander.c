@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:03:52 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/02 08:52:21 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 01:34:17 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	get_variable(t_env_var	*env_var, char expand_all)
 		env_var->val = ft_strdup("");
 	env_var->val_len = ft_strlen(env_var->val);
 	if (!expand_all)
-		replace(replace(env_var->val, -4, '\''), -5, '\"');
+		replace(replace(env_var->val, '\'', -4), '\"', -5);
 }
 
 void	replace_var_by_val(char *str, t_expand_var *exp_var)

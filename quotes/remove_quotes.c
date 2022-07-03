@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:18:45 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 12:11:29 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 01:32:21 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void	replace_quotes(char *str)
 {
 	int		i;
 	int		j;
+	int		len;
 
+	len = ft_strlen(str);
 	i = -1;
-	while (str[++i])
+	while (++i < len)
 	{
 		j = 1;
 		if (str[i] == '\"')

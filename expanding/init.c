@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:54:46 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/29 11:48:03 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 01:28:54 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_expand_var	*init(t_expand_var *exp_var, char *str, char expand_all)
 {
+	if (!str)
+		return (NULL);
 	exp_var = (t_expand_var *)malloc(sizeof(t_expand_var));
 	if (!exp_var)
 		return (NULL);
