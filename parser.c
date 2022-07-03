@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 01:29:35 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:30:32 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	heredoc_signal(int sig)
 		exit(1);
 }
 
-void	read_from_heredoc(t_cmd *cmd, char *delimiter)
+void	read_from_heredoc(t_cmd *cmd, char *delimiter, char expand)
 {
 	char	*line;
 	int		pipes[2];
@@ -39,7 +39,8 @@ void	read_from_heredoc(t_cmd *cmd, char *delimiter)
 		while (1)
 		{
 			line = readline("> ");
-			line = expand_var(line, 1);
+			if (expand)
+				line = expand_var(line, 1);
 			if (!line || !ft_strcmp(line, delimiter))
 			{
 				if (line)
@@ -79,7 +80,10 @@ void	open_heredocs(t_token ***tokens)
 			{
 				delimiter = remove_quotes(expand_var(ft_strdup(tokens[i][j]->token), 0));
 				tmp->doc_index = i;
-				read_from_heredoc(tmp, delimiter);
+				if (is_there_any_quote(tokens[i][j]->token))
+					read_from_heredoc(tmp, delimiter, 0);
+				else
+					read_from_heredoc(tmp, delimiter, 1);
 				wait(&g_global.doc_exit);
 				g_global.doc_exit = WEXITSTATUS(g_global.doc_exit);
 				free(delimiter);

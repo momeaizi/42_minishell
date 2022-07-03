@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 15:06:47 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:38:12 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	exec(void)
 		g_global.error = WEXITSTATUS(g_global.error);
 		tmp = tmp->next;
 	}
+	free(pid);
 }
 
 int	is_space(char *str)
