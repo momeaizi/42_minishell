@@ -6,7 +6,7 @@
 #    By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 18:05:01 by momeaizi          #+#    #+#              #
-#    Updated: 2022/07/02 16:51:59 by momeaizi         ###   ########.fr        #
+#    Updated: 2022/07/03 15:06:54 by momeaizi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CPPFLAGS=-I /Users/momeaizi/Desktop/brew/opt/readline/include
 
 CC = cc
 
-CFLAGS = $(LDFLAGS) $(CPPFLAGS) -lreadline  -Wall -Wextra -Werror  -fsanitize=address
+CFLAGS = $(LDFLAGS) $(CPPFLAGS) -lreadline  -Wall -Wextra -Werror  #-fsanitize=address
 
 libft.a:
 	@cd libft &&  make && make clean && mv libft.a ../

@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:39:13 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 04:19:32 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:04:58 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int	check_var(char *var, char *val)
 		return (1);
 	while (var[++i])
 	{
-		if (!var[i + 1] && var[i] == '+' && val)
+		if (!var[i + 1] && var[i] == '+' && val && i)
 			break ;
 		if (!ft_isalnum(var[i]) && var[i] != '_')
 			return (1);

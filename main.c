@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 04:20:29 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:06:47 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int	main(int ac, char **av, char **env)
 		clear_tokens(tokens);
 		clear_cmds();
 		free(g_global.line);
-		// system("leaks minishell");
+		system("leaks minishell");
 	}
 }
 
