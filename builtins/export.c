@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:39:13 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/01 17:06:59 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/03 04:19:32 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,6 @@ int	ft_export(t_cmd *cmd)
 			val = join_val(val, ft_strdup(var));
 			if (ft_getenv(var))
 				we_unset(var);
-			printf("%s\n",var);
 			g_global.env = ft_realloc(g_global.env, ft_strdup(val));
 		}
 		else if (!val && is_duplicated(get_var(cmd->args[i])))

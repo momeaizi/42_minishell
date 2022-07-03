@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 02:03:40 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 04:20:29 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ int	main(int ac, char **av, char **env)
 		if (!g_global.line)
 		{
 			write(1, "exit\n", 5);
-			exit(0);
+			exit(g_global.error);
 		}
 		if (!ft_strlen(g_global.line) || is_space(g_global.line))
 		{

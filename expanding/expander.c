@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:03:52 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 01:34:17 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 04:22:37 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	expander(char *str, t_expand_var *exp_var, char expand_all)
 		{
 			exp_var->env_var[index].var_len = 0;
 			exp_var->env_var[index].var = &str[i] + 1;
-			while (ft_isalpha(str[++i]) || str[i] == '_')
+			while (ft_isalnum(str[++i]) || str[i] == '_')
 				exp_var->env_var[index].var_len++;
 			i--;
 			get_variable(&exp_var->env_var[index], expand_all);
