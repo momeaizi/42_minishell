@@ -6,25 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 15:38:12 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:54:16 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	child_sig_handler(int sig)
-{
-	if (sig == SIGINT)
-	{
-		write(2, "\n", 1);
-		exit(130);
-	}
-	else if (sig == SIGQUIT)
-	{
-		write(2, "Quit: 3\n", 8);
-		exit(131);
-	}
-}
 
 void	sig_handler(int sig)
 {
@@ -98,8 +84,8 @@ void	exec(void)
 		pid[i++] = fork();
 		if (!pid[i - 1])
 		{
-			signal(SIGINT, &child_sig_handler);
-			signal(SIGQUIT, &child_sig_handler);
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 			if (check_cmds(tmp->args[0], tmp))
 				exit(tmp->error);
 			if (!tmp->error && tmp->path)
@@ -127,7 +113,10 @@ void	exec(void)
 	while (tmp)
 	{
 		waitpid(pid[i++], &g_global.error, 0);
-		g_global.error = WEXITSTATUS(g_global.error);
+		if (g_global.error == 2 || g_global.error == 3)
+			g_global.error += 128;
+		else
+			g_global.error = WEXITSTATUS(g_global.error);
 		tmp = tmp->next;
 	}
 	free(pid);
