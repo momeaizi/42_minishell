@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:16:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 08:31:32 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:36:41 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	check_args_exit(char *args)
 
 int	ft_exit(t_cmd *cmd)
 {
-	if(cmd->args[1] && cmd->args[2])
+	if (cmd->args[1] && cmd->args[2])
 	{
-		if(!check_args_exit(cmd->args[1]))
+		if (!check_args_exit(cmd->args[1]))
 		{
 			cmd->error = 255;
 			put_error_two("exit", cmd->args[1], "numeric argument required");
@@ -40,7 +40,6 @@ int	ft_exit(t_cmd *cmd)
 			cmd->error = 1;
 			put_error_two("exit", cmd->args[1], "too many arguments");
 		}
-			
 	}
 	else if (!cmd->args[1])
 		exit(g_global.error);

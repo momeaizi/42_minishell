@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 19:01:49 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:37:17 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,13 +131,12 @@ int	is_space(char *str)
 	return (1);
 }
 
-
 int	main(int ac, char **av, char **env)
 {
 	t_token	***tokens;
-	int		flag = 1;
-	
+	int		flag;
 
+	flag = 1;
 	ac = 4;
 	av = NULL;
 	g_global.env = copy_env(env);

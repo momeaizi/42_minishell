@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:14:09 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/02 17:27:25 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:39:32 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_cd(t_cmd *cmd)
 	path = getcwd(NULL, 0);
 	if (!path)
 	{
-		write(2, "cd: error retrieving current directory: getcwd: cannot",54);
+		write(2, "cd: error retrieving current directory: getcwd: cannot", 54);
 		write(2, "access parent directories: No such file or directory\n", 53);
 	}
 	else if (ret < 0)

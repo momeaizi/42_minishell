@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:49:34 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/01 08:33:58 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:36:04 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	set_len(t_expand_var *exp_var, int *index, int *i, int *j)
 {
 	*i = -1;
 	while (exp_var->env_var[++*i].end)
-		exp_var->new_str_len += (exp_var->env_var[*i].val_len - exp_var->env_var[*i].var_len);
+		exp_var->new_str_len += (exp_var->env_var[*i].val_len
+				- exp_var->env_var[*i].var_len);
 	exp_var->new_str = (char *)malloc(exp_var->new_str_len * sizeof(char));
 	*i = -1;
 	*j = 0;

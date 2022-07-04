@@ -6,12 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 16:19:14 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:39:14 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 static void	heredoc_signal(int sig)
 {
@@ -37,7 +36,7 @@ void	read_from_heredoc(t_cmd *cmd, char *delimiter, char expand)
 	while (1)
 	{
 		line = readline("> ");
-		if (expand  && line)
+		if (expand && line)
 			line = expand_var(line, 1);
 		if (!line || !ft_strcmp(line, delimiter))
 		{
@@ -71,7 +70,8 @@ void	open_heredocs(t_token ***tokens)
 		{
 			if (tokens[i][j]->type == 4)
 			{
-				delimiter = remove_quotes(expand_var(ft_strdup(tokens[i][j]->token), 0));
+				delimiter = remove_quotes(expand_var(\
+				ft_strdup(tokens[i][j]->token), 0));
 				tmp->doc_index = i;
 				if (is_there_any_quote(tokens[i][j]->token))
 					read_from_heredoc(tmp, delimiter, 0);
@@ -92,7 +92,8 @@ void	get_token_type(t_cmd *cmd, t_token *token, int j)
 		cmd->args = ft_realloc(cmd->args, remove_quotes(\
 		expand_var(ft_strdup(token->token), 0)));
 	else if (token->type == 1)
-		open_infile(cmd, token->token, j);
+		open_infile(cmd, token->token, remove_quotes(\
+		expand_var(ft_strdup(token->token), 0)), j);
 	else if (token->type == 2)
 		open_outfile(cmd, token->token, remove_quotes(\
 		expand_var(ft_strdup(token->token), 0)), 0);

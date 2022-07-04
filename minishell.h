@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 19:01:30 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:33:53 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ t_global	g_global;
 
 void	open_outfile(t_cmd *cmd, char *token, char *outfile, int append);
 void	replace_all_strings(char *str, char **strs, char new, char old);
+void	open_infile(t_cmd *cmd, char *token, char *infile, int index);
 void	replace_inside_quotes(char *str, char new, char old);
 void	put_error_two(char *str, char *idt, char *error);
-void	open_infile(t_cmd *cmd, char *token, int index);
 int		skip_quotes(char *line, int i, char quote);
 char	*get_cmd_path(t_cmd *cmd, char *cmd_name);
 char	*replace(char *str, char old, char new);

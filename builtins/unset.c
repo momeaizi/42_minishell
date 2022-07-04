@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:15:42 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/02 08:09:33 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/04 21:36:24 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_env_var(t_cmd *cmd, char *env)
 {
-	int	i;
-	char *var;
+	int		i;
+	char	*var;
 
 	i = 0;
 	var = get_var(env);
@@ -31,7 +31,7 @@ static int	is_valid(char *str)
 	int	i;
 
 	i = -1;
-	if(ft_isdigit(str[0]))
+	if (ft_isdigit(str[0]))
 		return (0);
 	while (str[++i])
 		if (!ft_isalnum(str[i]) && str[i] != '_')

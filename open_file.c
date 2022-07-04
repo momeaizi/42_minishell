@@ -6,18 +6,16 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:35:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/02 16:29:00 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:34:02 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	open_infile(t_cmd *cmd, char *token, int index)
+void	open_infile(t_cmd *cmd, char *token, char *infile, int index)
 {
-	char	*infile;
-	int		fd;
+	int	fd;
 
-	infile = remove_quotes(expand_var(ft_strdup(token), 0));
 	if (!ft_strlen(infile) && ft_strlen(token))
 	{
 		put_error(token, "ambiguous redirect");

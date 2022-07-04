@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:56:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 15:57:13 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:31:27 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int	check_red(int *i)
 	else if (g_global.line[j] == '|')
 	{
 		g_global.error = 258;
-		return (!write(2, "minishell: syntax error near unexpected token `|'\n", 50));
+		write(2, "minishell: ", 11);
+		return (!write(2, "syntax error near unexpected token `|'\n", 50));
 	}
 	*i = j - 1;
 	return (1);
