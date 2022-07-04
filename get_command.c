@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:07:05 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 19:04:57 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:21:34 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ char	*get_path(t_cmd *cmd, char *cmd_name)
 	path = get_cmd_path(cmd, cmd_name);
 	if (!path && !cmd->error)
 	{
-		printf("///\n");
 		cmd->error = 127;
 		if (ft_strchr(cmd_name, '/'))
 			put_error(cmd_name, "No such file or directory");
