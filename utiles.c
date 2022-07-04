@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:26:40 by mskerba           #+#    #+#             */
-/*   Updated: 2022/07/03 01:14:41 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:22:31 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*join_readline_with_line(char *line)
 {
 	char	*buf;
 	char	*new_line;
-	
+
 	buf = readline(">");
 	if (!buf)
 	{

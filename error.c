@@ -6,11 +6,22 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:56:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 03:55:52 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:57:13 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	signal_handler(int sig)
+{
+	if (sig == SIGINT)
+	{
+		write(1, "\n", 1);
+		g_global.doc_exit = 1;
+		g_global.fd = dup(0);
+		close(0);
+	}
+}
 
 int	check_pipe(int *i)
 {
@@ -92,6 +103,7 @@ int	check_error(void)
 	int	i;
 
 	i = -1;
+	signal(SIGINT, &signal_handler);
 	g_global.line = unclosed_quotes();
 	if (!g_global.line)
 		return (0);

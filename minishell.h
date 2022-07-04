@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 15:29:44 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:01:30 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/types.h>
+# include <dirent.h>
 # include <string.h>
 # include <unistd.h>
 # include <readline/history.h>
@@ -55,6 +57,7 @@ typedef struct s_global
 	char	**env;
 	int		error;
 	int		doc_exit;
+	int		fd;
 }					t_global;
 
 t_global	g_global;
@@ -65,9 +68,11 @@ void	replace_inside_quotes(char *str, char new, char old);
 void	put_error_two(char *str, char *idt, char *error);
 void	open_infile(t_cmd *cmd, char *token, int index);
 int		skip_quotes(char *line, int i, char quote);
+char	*get_cmd_path(t_cmd *cmd, char *cmd_name);
 char	*replace(char *str, char old, char new);
 char	*expand_var(char *str, char expand_all);
 void	split(char ***tokens, char *s, char c);
+char	*get_path(t_cmd *cmd, char *cmd_name);
 char	*join_readline_with_line(char *line);
 int		check_env_var(t_cmd *cmd, char *env);
 int		*tokens_length(char *str, char c);
@@ -75,7 +80,6 @@ void	put_error(char *str, char *error);
 char	**split_spaces(char *s, char c);
 int		count_tokens(char *str, char c);
 void	clear_tokens(t_token ***tokens);
-char	*get_cmd_path(char *cmd_name);
 int		is_there_any_quote(char *str);
 int		skip_space(char *line, int i);
 void	clear(char **paths, int j);

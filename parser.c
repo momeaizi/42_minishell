@@ -6,17 +6,19 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 08:28:15 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 16:19:14 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 
-void	heredoc_signal(int sig)
+static void	heredoc_signal(int sig)
 {
 	if (sig == SIGINT)
 	{
+		g_global.doc_exit = 1;
+		g_global.fd = dup(0);
 		close(0);
 	}
 }
@@ -24,7 +26,6 @@ void	heredoc_signal(int sig)
 void	read_from_heredoc(t_cmd *cmd, char *delimiter, char expand)
 {
 	char	*line;
-	int		fd;
 	int		pipes[2];
 
 	if (pipe(pipes) < 0)
@@ -36,19 +37,21 @@ void	read_from_heredoc(t_cmd *cmd, char *delimiter, char expand)
 	while (1)
 	{
 		line = readline("> ");
-		if (expand)
+		if (expand  && line)
 			line = expand_var(line, 1);
 		if (!line || !ft_strcmp(line, delimiter))
 		{
 			if (line)
 				free(line);
+			close(pipes[1]);
 			break ;
 		}
 		write(pipes[1], line, ft_strlen(line));
 		write(pipes[1], "\n", 1);
 		free(line);
 	}
-	
+	if (g_global.doc_exit)
+		dup2(g_global.fd, 0);
 	signal(SIGINT, &sig_handler);
 }
 
@@ -86,12 +89,8 @@ void	open_heredocs(t_token ***tokens)
 void	get_token_type(t_cmd *cmd, t_token *token, int j)
 {
 	if (!token->type)
-	{
 		cmd->args = ft_realloc(cmd->args, remove_quotes(\
 		expand_var(ft_strdup(token->token), 0)));
-		if (!cmd->args[1])
-			cmd->path = get_cmd_path(cmd->args[0]);
-	}
 	else if (token->type == 1)
 		open_infile(cmd, token->token, j);
 	else if (token->type == 2)

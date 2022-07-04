@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 08:29:05 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:01:49 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	sig_handler(int sig)
 {
 	if (sig == SIGINT)
 	{
-		g_global.error = 1;
 		write(1, "\n", 1);
+		g_global.error = 1;
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
@@ -42,11 +42,8 @@ int	check_cmds(char *command, t_cmd *cmd)
 		return (ft_env(cmd));
 	else if (!ft_strcmp("exit", command))
 		return (ft_exit(cmd));
-	else if (!cmd->path)
-	{
-		cmd->error = 127;
-		put_error(cmd->args[0], "command not found");
-	}
+	else
+		cmd->path = get_path(cmd, cmd->args[0]);
 	return (0);
 }
 
@@ -138,6 +135,7 @@ int	is_space(char *str)
 int	main(int ac, char **av, char **env)
 {
 	t_token	***tokens;
+	int		flag = 1;
 	
 
 	ac = 4;
@@ -161,7 +159,10 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		add_history(g_global.line);
-		if (!check_error())
+		flag = check_error();
+		if (g_global.doc_exit)
+			dup2(g_global.fd, 0);
+		if (!flag)
 			continue ;
 		g_global.line = add_spaces(g_global.line);
 		tokens = lexer(g_global.line);
