@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 15:30:32 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 08:28:15 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,41 @@
 
 void	heredoc_signal(int sig)
 {
-	write(1, "\n", 1);
 	if (sig == SIGINT)
-		exit(1);
+	{
+		close(0);
+	}
 }
 
 void	read_from_heredoc(t_cmd *cmd, char *delimiter, char expand)
 {
 	char	*line;
+	int		fd;
 	int		pipes[2];
-	int		id;
 
 	if (pipe(pipes) < 0)
 		return ;
 	if (cmd->in != 0)
 		close(cmd->in);
 	cmd->in = pipes[0];
-	signal(SIGINT, SIG_IGN);
-	id = fork();
-	if (!id)
+	signal(SIGINT, &heredoc_signal);
+	while (1)
 	{
-		signal(SIGINT, &heredoc_signal);
-		while (1)
+		line = readline("> ");
+		if (expand)
+			line = expand_var(line, 1);
+		if (!line || !ft_strcmp(line, delimiter))
 		{
-			line = readline("> ");
-			if (expand)
-				line = expand_var(line, 1);
-			if (!line || !ft_strcmp(line, delimiter))
-			{
-				if (line)
-					free(line);
-				close(pipes[0]);
-				close(pipes[1]);
-				break ;
-			}
-			write(pipes[1], line, ft_strlen(line));
-			write(pipes[1], "\n", 1);
-			free(line);
+			if (line)
+				free(line);
+			break ;
 		}
-		exit(0);
+		write(pipes[1], line, ft_strlen(line));
+		write(pipes[1], "\n", 1);
+		free(line);
 	}
-	else
-	{
-		close(pipes[1]);
-		return ;
-	}
+	
+	signal(SIGINT, &sig_handler);
 }
 
 void	open_heredocs(t_token ***tokens)

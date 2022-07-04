@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 16:02:58 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/04 08:29:05 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	exec(void)
 	if (!tmp->next && check_cmds(tmp->args[0], tmp))
 	{
 		g_global.error = tmp->error;
+		free(pid);
 		return ;
 	}
 	signal(SIGINT, SIG_IGN);
@@ -170,7 +171,6 @@ int	main(int ac, char **av, char **env)
 		clear_tokens(tokens);
 		clear_cmds();
 		free(g_global.line);
-		system("leaks minishell");
 	}
 }
 

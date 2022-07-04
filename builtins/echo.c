@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:13:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/02 17:08:27 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/03 18:13:00 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_echo(t_cmd *cmd)
 	int	j;
 
 	j = check_n(cmd->args);
-	if(!cmd->args[1])
+	if (!cmd->args[1])
 	{
 		write(cmd->out, "\n", 1);
 		return (1);
