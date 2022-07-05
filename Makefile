@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+         #
+#    By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 18:05:01 by momeaizi          #+#    #+#              #
-#    Updated: 2022/07/05 16:55:48 by momeaizi         ###   ########.fr        #
+#    Updated: 2022/07/05 21:28:32 by mskerba          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ SRC = error.c main.c  utiles.c tokenizer.c unclosed_car.c create_list.c open_fil
 	quotes/is_there_any_quotes.c quotes/remove_quotes.c\
 	split/split.c split/clear.c split/count_tokens.c split/tokens_length.c split/replace.c\
 	
-LDFLAGS=-L /Users/momeaizi/Desktop/brew/opt/readline/lib
-CPPFLAGS=-I /Users/momeaizi/Desktop/brew/opt/readline/include
+LDFLAGS=-L /goinfre/mskerba/.brew/opt/readline/lib
+CPPFLAGS=-I /goinfre/mskerba/.brew/opt/readline/include
 
 CC = cc
 

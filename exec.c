@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:23:09 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/05 14:45:42 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:01:20 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,7 @@ void	child(t_cmd *tmp, int pid)
 		{
 			dup2(tmp->in, 0);
 			dup2(tmp->out, 1);
-			if (tmp->in != 0)
-				close(tmp->in);
-			if (tmp->out != 1)
-				close(tmp->out);
+			close_all(g_global.cmds);
 			execve(tmp->path, tmp->args, g_global.env);
 			put_error(tmp->args[0], strerror(errno));
 			exit(errno);

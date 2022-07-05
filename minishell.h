@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/05 14:25:56 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:02:00 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int		is_duplicated(char *var);
 void	signal_handler(int sig);
 int		list_size(t_cmd *cmds);
 char	*unclosed_quotes(void);
+void	close_all(t_cmd *cmd);
 char	**copy_env(char **env);
 char	*ft_getenv(char *var);
 void	create_list(int size);
