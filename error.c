@@ -6,22 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:56:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 21:31:27 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:15:29 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	signal_handler(int sig)
-{
-	if (sig == SIGINT)
-	{
-		write(1, "\n", 1);
-		g_global.doc_exit = 1;
-		g_global.fd = dup(0);
-		close(0);
-	}
-}
 
 int	check_pipe(int *i)
 {
@@ -66,6 +55,17 @@ int	check_and(int *i)
 	return (1);
 }
 
+int	error_pipe(int j)
+{
+	if (g_global.line[j] == '|')
+	{
+		g_global.error = 258;
+		write(2, "minishell: ", 11);
+		return (1);
+	}
+	return (0);
+}
+
 int	check_red(int *i)
 {
 	int	j;
@@ -89,12 +89,8 @@ int	check_red(int *i)
 		g_global.error = 258;
 		return (!write(2, "minishell: syntax error\n", 24));
 	}
-	else if (g_global.line[j] == '|')
-	{
-		g_global.error = 258;
-		write(2, "minishell: ", 11);
-		return (!write(2, "syntax error near unexpected token `|'\n", 50));
-	}
+	else if (error_pipe(j))
+		return (!write(2, "syntax error near unexpected token `|'\n", 39));
 	*i = j - 1;
 	return (1);
 }

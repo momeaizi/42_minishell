@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/momeaizi/Desktop/42_minishell'
+cd libft &&  make && make clean && mv libft.a ../
+make: Leaving directory `/Users/momeaizi/Desktop/42_minishell'
+ 

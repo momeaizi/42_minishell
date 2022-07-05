@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 21:33:53 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:25:56 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	split(char ***tokens, char *s, char c);
 char	*get_path(t_cmd *cmd, char *cmd_name);
 char	*join_readline_with_line(char *line);
 int		check_env_var(t_cmd *cmd, char *env);
+void	change_env_var(char *var, char *val);
 int		*tokens_length(char *str, char c);
 void	put_error(char *str, char *error);
 char	**split_spaces(char *s, char c);
@@ -82,18 +83,25 @@ int		count_tokens(char *str, char c);
 void	clear_tokens(t_token ***tokens);
 int		is_there_any_quote(char *str);
 int		skip_space(char *line, int i);
+void	we_unset(char *var_to_unset);
 void	clear(char **paths, int j);
 void	clear_triple(char ***cmds);
 void	parser(t_token ***tokens);
 char	*remove_quotes(char *str);
 int		skip_brackets(char *line);
+void	print_export(t_cmd *cmd);
 int		size_double(char **cmds);
 char	*unclosed_brackets(void);
+int		is_duplicated(char *var);
+void	signal_handler(int sig);
 int		list_size(t_cmd *cmds);
 char	*unclosed_quotes(void);
+char	**copy_env(char **env);
 char	*ft_getenv(char *var);
 void	create_list(int size);
 int		ft_export(t_cmd *cmd);
+char	*get_var(char *args);
+char	*get_val(char *args);
 t_token	***lexer(char *line);
 int		ft_unset(t_cmd *cmd);
 char	*get_var(char *args);
@@ -106,6 +114,7 @@ int		ft_env(t_cmd *cmd);
 int		check_error(void);
 int		ft_cd(t_cmd *cmd);
 void	clear_cmds(void);
+void	exec(void);
 int		abs(int n);
 
 #endif

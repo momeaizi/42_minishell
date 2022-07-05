@@ -6,17 +6,16 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:18:45 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 01:32:21 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/05 06:30:23 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	replace_quotes(char *str)
+void	replace_quotes(char *str, int len)
 {
 	int		i;
 	int		j;
-	int		len;
 
 	len = ft_strlen(str);
 	i = -1;
@@ -51,7 +50,7 @@ char	*remove_quotes(char *str)
 
 	i = -1;
 	len = 0;
-	replace_quotes(str);
+	replace_quotes(str, len);
 	while (str[++i])
 		if (str[i] == -1 || (str[i] == '$' && str[i + 1] == -1))
 			len++;

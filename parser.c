@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 21:39:14 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:00:38 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,24 @@ void	read_from_heredoc(t_cmd *cmd, char *delimiter, char expand)
 		if (expand && line)
 			line = expand_var(line, 1);
 		if (!line || !ft_strcmp(line, delimiter))
-		{
-			if (line)
-				free(line);
-			close(pipes[1]);
 			break ;
-		}
 		write(pipes[1], line, ft_strlen(line));
 		write(pipes[1], "\n", 1);
 		free(line);
 	}
+	if (line)
+		free(line);
+	close(pipes[1]);
 	if (g_global.doc_exit)
 		dup2(g_global.fd, 0);
-	signal(SIGINT, &sig_handler);
 }
 
-void	open_heredocs(t_token ***tokens)
+void	open_heredocs(t_cmd *tmp, t_token ***tokens)
 {
 	char	*delimiter;
-	t_cmd	*tmp;
 	int		j;
 	int		i;
 
-	tmp = g_global.cmds;
 	i = -1;
 	while (tokens[++i] && !g_global.doc_exit)
 	{
@@ -77,9 +72,8 @@ void	open_heredocs(t_token ***tokens)
 					read_from_heredoc(tmp, delimiter, 0);
 				else
 					read_from_heredoc(tmp, delimiter, 1);
-				wait(&g_global.doc_exit);
-				g_global.doc_exit = WEXITSTATUS(g_global.doc_exit);
 				free(delimiter);
+				signal(SIGINT, &sig_handler);
 			}
 		}
 		tmp = tmp->next;
@@ -108,8 +102,8 @@ void	parser(t_token ***tokens)
 	int		i;
 	int		j;
 
-	open_heredocs(tokens);
 	tmp = g_global.cmds;
+	open_heredocs(tmp, tokens);
 	i = -1;
 	while (tokens[++i] && !g_global.doc_exit)
 	{
