@@ -6,11 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:14:06 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/05 23:55:59 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:43:51 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	clear_tokens(t_token ***tokens)
 {

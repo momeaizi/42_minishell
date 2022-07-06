@@ -6,11 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:23:09 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 00:59:45 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:49:19 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	check_cmds(char *command, t_cmd *cmd)
 {

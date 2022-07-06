@@ -6,11 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 14:35:32 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:26:46 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	read_from_heredoc(t_cmd *cmd, char *delimiter, char expand)
 {
@@ -77,7 +77,8 @@ void	get_token_type(t_cmd *cmd, t_token *token, int j)
 	if (!token->type)
 	{
 		size = size_double(cmd->args);
-		cmd->args = ft_realloc(cmd->args, expand_var(ft_strdup(token->token), 0));
+		cmd->args = ft_realloc(cmd->args, expand_var(\
+		ft_strdup(token->token), 0));
 		if (!ft_strlen(cmd->args[size]))
 		{
 			free(cmd->args[size]);

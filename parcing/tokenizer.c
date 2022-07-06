@@ -6,11 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:43:06 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 22:17:56 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:49:31 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	is_redirection(char *token)
 {

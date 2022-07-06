@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   open_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:35:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/05 21:33:53 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:40:02 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	open_infile(t_cmd *cmd, char *token, char *infile, int index)
 {

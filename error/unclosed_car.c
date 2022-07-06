@@ -6,11 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:31:18 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 12:32:23 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:49:00 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*unclosed_quotes(void)
 {

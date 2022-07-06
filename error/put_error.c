@@ -6,11 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:32 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 15:10:08 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:48:51 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	put_error(char *str, char *error)
 {
