@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 01:01:54 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:41:39 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	minishell(int flag, t_token ***tokens)
 		if (!g_global.doc_exit)
 			exec(g_global.cmds, NULL, 0);
 		clear_all(tokens);
+		system("leaks minishell");
 	}
 }
 
