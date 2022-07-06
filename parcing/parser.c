@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 15:26:46 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:37:53 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	get_token_type(t_cmd *cmd, t_token *token, int j)
 			free(cmd->args[size]);
 			cmd->args[size] = NULL;
 		}
+		else
+			cmd->args[size] = remove_quotes(cmd->args[size]);
 	}
 	else if (token->type == 1)
 		open_infile(cmd, token->token, remove_quotes(\

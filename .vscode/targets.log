@@ -1,0 +1,549 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+
+# Make data base, printed on Wed Jul  6 18:48:51 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# makefile (from `Makefile', line 13)
+SRC = main.c utiles/utiles.c utiles/clear.c   utiles/create_list.c parcing/parser.c parcing/tokenizer.c  parcing/open_file.c execution/get_command.c execution/get_env.c execution/exec.c error/error.c error/unclosed_car.c error/put_error.c builtins/cd.c builtins/pwd.c builtins/env.c builtins/exit.c builtins/export.c builtins/echo.c builtins/unset.c builtins/builtins_utiles.c expanding/expander.c expanding/init.c expanding/utils.c quotes/is_there_any_quotes.c quotes/remove_quotes.c split/split.c split/clear.c split/count_tokens.c split/tokens_length.c split/replace.c 
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# makefile (from `Makefile', line 24)
+CPPFLAGS = -I /Users/momeaizi/Desktop/brew/opt/readline/include
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/momeaizi/Desktop/42_minishell
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 33)
+CFLAGS = -Wall -Wextra -Werror $(HEADERS) 
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from `Makefile', line 29)
+OBJS := main.o utiles/utiles.o utiles/clear.o utiles/create_list.o parcing/parser.o parcing/tokenizer.o parcing/open_file.o execution/get_command.o execution/get_env.o execution/exec.o error/error.o error/unclosed_car.o error/put_error.o builtins/cd.o builtins/pwd.o builtins/env.o builtins/exit.o builtins/export.o builtins/echo.o builtins/unset.o builtins/builtins_utiles.o expanding/expander.o expanding/init.o expanding/utils.o quotes/is_there_any_quotes.o quotes/remove_quotes.o split/split.o split/clear.o split/count_tokens.o split/tokens_length.o split/replace.o
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0000jv40004fs/T/vscode-ipc-89c99825-9ea1-4d4e-917c-2bb141ed803c.sock
+# environment
+VSCODE_CWD = /
+# environment
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.MLzQcPMG9W/Render
+# environment
+PATH = /Users/momeaizi/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/momeaizi/.scripts
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from `Makefile', line 23)
+LDFLAGS = -L /Users/momeaizi/Desktop/brew/opt/readline/lib
+# makefile (from `Makefile', line 27)
+LIB = libft.a
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.w66nn1qEah/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+HOMEBREW_TEMP = /tmp/momeaizi/Homebrew/Temp
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /Users/momeaizi/Desktop/42_minishell
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /Users/momeaizi
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/momeaizi/Library/Application Support/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
+# environment
+LOGNAME = momeaizi
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+ZSH = /Users/momeaizi/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+HOMEBREW_CACHE = /tmp/momeaizi/Homebrew/Caches
+# environment
+SHLVL = 1
+# makefile (from `Makefile', line 31)
+CC = cc
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = momeaizi
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 26)
+NAME = minishell
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n0000jv40004fs/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/momeaizi/Library/Application Support/Code/1.68.1-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = com.microsoft.VSCode.3084
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+__CF_USER_TEXT_ENCODING = 0x11D9:0x0:0x0
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+LANG = C
+# environment
+VSCODE_PID = 77182
+# variable set hash-table stats:
+# Load=75/1024=7%, Rehash=0, Collisions=3/105=3%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777227, inode 4351631): 22 files, no impossibilities.
+
+# 22 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+quotes/remove_quotes.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+error/unclosed_car.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/exec.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtins/env.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+split/count_tokens.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+all: libft.a minishell
+#  Command-line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtins/pwd.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+error/error.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+parcing/tokenizer.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/get_command.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+split/clear.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:17
+ 
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtins/echo.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+builtins/export.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:18:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+expanding/init.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+libft.a:
+#  Implicit rule search has not been done.
+#  Last modified 2022-07-06 18:21:15
+#  File has been updated.
+#  Successfully updated.
+#  commands to execute (from `Makefile', line 37):
+	cd libft &&  make && make clean && mv $(LIB) ../
+	
+
+# Not a target:
+execution/get_env.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+parcing/parser.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+utiles/create_list.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+utiles/clear.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+minishell: main.o utiles/utiles.o utiles/clear.o utiles/create_list.o parcing/parser.o parcing/tokenizer.o parcing/open_file.o execution/get_command.o execution/get_env.o execution/exec.o error/error.o error/unclosed_car.o error/put_error.o builtins/cd.o builtins/pwd.o builtins/env.o builtins/exit.o builtins/export.o builtins/echo.o builtins/unset.o builtins/builtins_utiles.o expanding/expander.o expanding/init.o expanding/utils.o quotes/is_there_any_quotes.o quotes/remove_quotes.o split/split.o split/clear.o split/count_tokens.o split/tokens_length.o split/replace.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-07-06 18:21:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 41):
+	$(CC)  -lreadline  $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) $(OBJS) -L. $(LIB) -o $(NAME)
+	
+
+# Not a target:
+expanding/expander.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtins/builtins_utiles.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+fclean: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
+	rm -rf $(NAME)
+	
+
+# Not a target:
+split/tokens_length.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+utiles/utiles.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtins/exit.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+re: fclean all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 44):
+	rm -f $(OBJS) $(LIB)
+	
+
+# Not a target:
+builtins/unset.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+parcing/open_file.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+split/replace.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtins/cd.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+main.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:15
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+quotes/is_there_any_quotes.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+expanding/utils.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+split/split.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+error/put_error.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-06 18:21:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# files hash-table stats:
+# Load=40/1024=4%, Rehash=0, Collisions=8/89=9%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Wed Jul  6 18:48:51 2022
+
+ 

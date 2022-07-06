@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 15:26:26 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:01:49 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ void	minishell(int flag, t_token ***tokens)
 	while (1)
 	{
 		init_prompt();
+		if (ft_strlen(g_global.line))
+			add_history(g_global.line);
 		if (!ft_strlen(g_global.line) || is_space(g_global.line))
 		{
 			free(g_global.line);
 			continue ;
 		}
-		add_history(g_global.line);
 		flag = check_error();
 		if (g_global.doc_exit)
 			dup2(g_global.fd, 0);
