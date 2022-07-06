@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:14:06 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/05 22:01:37 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/05 23:55:59 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	clear_cmds(void)
 
 void	close_all(t_cmd *cmd)
 {
-	while(cmd)
+	while (cmd)
 	{
 		if (cmd->in != 0)
 			close(cmd->in);

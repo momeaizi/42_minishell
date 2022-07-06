@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/05 14:40:25 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 01:01:54 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_prompt(void)
 	if (!g_global.line)
 	{
 		write(1, "exit\n", 5);
-		exit(g_global.error);
+		exit(g_global.exit_code);
 	}
 }
 
@@ -63,7 +63,7 @@ void	minishell(int flag, t_token ***tokens)
 		tokens = lexer(g_global.line);
 		parser(tokens);
 		if (!g_global.doc_exit)
-			exec();
+			exec(g_global.cmds, NULL, 0);
 		clear_all(tokens);
 	}
 }
@@ -75,9 +75,10 @@ int	main(int ac, char **av, char **env)
 
 	flag = 1;
 	tokens = NULL;
-	ac = 4;
-	av = NULL;
+	if (ac != 1 && av[1])
+		return (1);
 	g_global.env = copy_env(env);
-	g_global.error = 0;
+	g_global.exit_code = 0;
 	minishell(flag, tokens);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:26:40 by mskerba           #+#    #+#             */
-/*   Updated: 2022/07/05 14:26:34 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:53:33 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	signal_handler(int sig)
 	{
 		write(1, "\n", 1);
 		g_global.doc_exit = 1;
+		g_global.exit_code = 1;
 		g_global.fd = dup(0);
 		close(0);
 	}
@@ -53,8 +54,9 @@ void	sig_handler(int sig)
 {
 	if (sig == SIGINT)
 	{
-		write(1, "\n", 1);
-		g_global.error = 1;
+		if (!g_global.doc_exit)
+			write(1, "\n", 1);
+		g_global.exit_code = 1;
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();

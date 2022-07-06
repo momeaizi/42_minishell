@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:56:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/05 14:15:29 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:57:51 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	check_pipe(int *i)
 	j = skip_space(g_global.line, *i);
 	if ((g_global.line[j] == '|' && j != *i + 1) || !g_global.line[j])
 	{
-		g_global.error = 258;
+		g_global.exit_code = 258;
 		write(2, "minishell: syntax error near unexpected token `|'\n", 50);
 		return (0);
 	}
 	else if (g_global.line[*i + 1] == '|' && g_global.line[*i + 2] == '|')
 	{
-		g_global.error = 258;
+		g_global.exit_code = 258;
 		write(2, "minishell: syntax error near unexpected token `|'\n", 50);
 		return (0);
 	}
@@ -41,13 +41,13 @@ int	check_and(int *i)
 	j = skip_space(g_global.line, *i + 1);
 	if (g_global.line[*i + 1] != '&' || !g_global.line[j])
 	{
-		g_global.error = 258;
+		g_global.exit_code = 258;
 		write(2, "minishell: syntax error\n", 24);
 		return (0);
 	}
 	else if (g_global.line[*i + 2] == '&' || g_global.line[j] == '&')
 	{
-		g_global.error = 258;
+		g_global.exit_code = 258;
 		write(2, "minishell: syntax error\n", 24);
 		return (0);
 	}
@@ -59,7 +59,7 @@ int	error_pipe(int j)
 {
 	if (g_global.line[j] == '|')
 	{
-		g_global.error = 258;
+		g_global.exit_code = 258;
 		write(2, "minishell: ", 11);
 		return (1);
 	}
@@ -74,19 +74,19 @@ int	check_red(int *i)
 	if (g_global.line[*i] + g_global.line[j] == 122 && \
 	abs(g_global.line[*i] - g_global.line[j]) == 2)
 	{
-		g_global.error = 258;
+		g_global.exit_code = 258;
 		return (!write(2, "minishell: syntax error\n", 24));
 	}
-	else if ((g_global.line[*i] == g_global.line[j] && \
-	j != *i + 1) || !g_global.line[j])
+	else if ((g_global.line[*i] == g_global.line[j] \
+	&& j != *i + 1) || !g_global.line[j])
 	{
-		g_global.error = 258;
+		g_global.exit_code = 258;
 		return (!write(2, "minishell: syntax error\n", 24));
 	}
-	else if (g_global.line[*i + 1] == g_global.line[*i] && \
-	g_global.line[*i + 2] == g_global.line[*i])
+	else if (g_global.line[*i + 1] == g_global.line[*i] \
+	&& g_global.line[*i + 2] == g_global.line[*i])
 	{
-		g_global.error = 258;
+		g_global.exit_code = 258;
 		return (!write(2, "minishell: syntax error\n", 24));
 	}
 	else if (error_pipe(j))
@@ -114,8 +114,8 @@ int	check_error(void)
 			return (0);
 		else if (g_global.line[i] == '&' && !check_and(&i))
 			return (0);
-		else if ((g_global.line[i] == '<' || g_global.line[i] == '>')
-			&& !check_red(&i))
+		else if ((g_global.line[i] == '<' || g_global.line[i] == '>') \
+		&& !check_red(&i))
 			return (0);
 	}
 	return (1);

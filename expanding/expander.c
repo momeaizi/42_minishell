@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:03:52 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 04:22:37 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:41:18 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	get_variable(t_env_var	*env_var, char expand_all)
 		return ;
 	ft_strlcpy(env_var->var, var, env_var->var_len + 1);
 	if (!ft_strcmp("?", env_var->var))
-		env_var->val = ft_itoa(g_global.error);
+		env_var->val = ft_itoa(g_global.exit_code);
 	else
 		env_var->val = ft_getenv(env_var->var);
 	if (!env_var->val)

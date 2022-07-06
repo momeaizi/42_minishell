@@ -1,4 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 23:58:06 by momeaizi          #+#    #+#             */
+/*   Updated: 2022/07/06 02:17:30 by momeaizi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
+
+int	is_in_env(char *var)
+{
+	int		i;
+	int		len;
+
+	i = -1;
+	len = ft_strlen(var);
+	while (g_global.env[++i])
+		if ((!ft_strncmp(g_global.env[i], var, len) \
+		&& g_global.env[i][len] == '=') || !ft_strcmp(g_global.env[i], var))
+			return (1);
+	return (0);
+}
 
 char	*join_val(char *val, char *var)
 {
@@ -38,7 +64,7 @@ int	check_var(char *var, char *val)
 	return (0);
 }
 
-int	ft_export(t_cmd *cmd)
+void	ft_export(t_cmd *cmd)
 {
 	char	*val;
 	char	*var;
@@ -67,7 +93,7 @@ int	ft_export(t_cmd *cmd)
 		{
 			var[ft_strlen(var) - 1] = 0;
 			val = join_val(val, ft_strdup(var));
-			if (ft_getenv(var))
+			if (is_in_env(var))
 				we_unset(var);
 			g_global.env = ft_realloc(g_global.env, ft_strdup(val));
 		}
@@ -87,5 +113,4 @@ int	ft_export(t_cmd *cmd)
 		free(var);
 		free(val);
 	}
-	return (1);
 }

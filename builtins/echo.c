@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:13:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 18:13:00 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 00:27:43 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_n(char **args)
 	return (i);
 }
 
-int	ft_echo(t_cmd *cmd)
+void	ft_echo(t_cmd *cmd)
 {
 	int	i;
 	int	j;
@@ -39,7 +39,7 @@ int	ft_echo(t_cmd *cmd)
 	if (!cmd->args[1])
 	{
 		write(cmd->out, "\n", 1);
-		return (1);
+		return ;
 	}
 	if (!cmd->args[1][0])
 		j = 1;
@@ -52,5 +52,4 @@ int	ft_echo(t_cmd *cmd)
 	}
 	if (j == 1)
 		write(cmd->out, "\n", 1);
-	return (1);
 }

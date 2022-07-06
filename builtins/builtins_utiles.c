@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:51:14 by mskerba           #+#    #+#             */
-/*   Updated: 2022/07/05 16:51:19 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 01:46:35 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	we_unset(char *var_to_unset)
 
 	j = 0;
 	i = -1;
+	
 	new_env = ft_calloc(size_double(g_global.env), sizeof(char *));
 	while (g_global.env[++i])
 	{

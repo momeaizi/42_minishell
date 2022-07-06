@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/05 22:02:00 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/07/06 01:00:39 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_global
 	t_cmd	*cmds;
 	char	*line;
 	char	**env;
-	int		error;
+	int		exit_code;
 	int		doc_exit;
 	int		fd;
 }					t_global;
@@ -76,6 +76,7 @@ char	*get_path(t_cmd *cmd, char *cmd_name);
 char	*join_readline_with_line(char *line);
 int		check_env_var(t_cmd *cmd, char *env);
 void	change_env_var(char *var, char *val);
+void	exec(t_cmd *tmp, int *pid, int i);
 int		*tokens_length(char *str, char c);
 void	put_error(char *str, char *error);
 char	**split_spaces(char *s, char c);
@@ -100,22 +101,21 @@ void	close_all(t_cmd *cmd);
 char	**copy_env(char **env);
 char	*ft_getenv(char *var);
 void	create_list(int size);
-int		ft_export(t_cmd *cmd);
+void	ft_export(t_cmd *cmd);
 char	*get_var(char *args);
 char	*get_val(char *args);
 t_token	***lexer(char *line);
-int		ft_unset(t_cmd *cmd);
+void	ft_unset(t_cmd *cmd);
 char	*get_var(char *args);
 void	sig_handler(int sig);
 char	*get_val(char *args);
-int		ft_echo(t_cmd *cmd);
-int		ft_exit(t_cmd *cmd);
-int		ft_pwd(t_cmd *cmd);
-int		ft_env(t_cmd *cmd);
+void	ft_echo(t_cmd *cmd);
+void	ft_exit(t_cmd *cmd);
+void	ft_pwd(t_cmd *cmd);
+void	ft_env(t_cmd *cmd);
 int		check_error(void);
-int		ft_cd(t_cmd *cmd);
+void	ft_cd(t_cmd *cmd);
 void	clear_cmds(void);
-void	exec(void);
 int		abs(int n);
 
 #endif

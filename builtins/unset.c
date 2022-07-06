@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:15:42 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 21:36:24 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 00:28:17 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	size_env(t_cmd *cmd)
 	return (count);
 }
 
-int	ft_unset(t_cmd *cmd)
+void	ft_unset(t_cmd *cmd)
 {
 	char	**new_env;
 	int		i;
@@ -80,7 +80,7 @@ int	ft_unset(t_cmd *cmd)
 	count = size_env(cmd);
 	check_args(cmd);
 	if (!count)
-		return (1);
+		return ;
 	j = 0;
 	new_env = ft_calloc(size_double(g_global.env) - count + 1, sizeof(char *));
 	i = -1;
@@ -92,5 +92,4 @@ int	ft_unset(t_cmd *cmd)
 	}
 	free(g_global.env);
 	g_global.env = new_env;
-	return (1);
 }
