@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:15:42 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 00:28:17 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:23:08 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ int	check_env_var(t_cmd *cmd, char *env)
 	i = 0;
 	var = get_var(env);
 	while (cmd->args[++i])
+	{
 		if (!ft_strcmp(var, cmd->args[i]))
+		{
+			free(var);
 			return (1);
+		}
+	}
 	free(var);
 	return (0);
 }
@@ -87,8 +92,9 @@ void	ft_unset(t_cmd *cmd)
 	while (g_global.env[++i])
 	{
 		if (!check_env_var(cmd, g_global.env[i]))
-			new_env[j++] = ft_strdup(g_global.env[i]);
-		free(g_global.env[i]);
+			new_env[j++] = g_global.env[i];
+		else
+			free(g_global.env[i]);
 	}
 	free(g_global.env);
 	g_global.env = new_env;

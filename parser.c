@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/05 23:50:50 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:35:32 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,18 @@ void	open_heredocs(t_cmd *tmp, t_token ***tokens)
 
 void	get_token_type(t_cmd *cmd, t_token *token, int j)
 {
+	int	size;
+
 	if (!token->type)
-		cmd->args = ft_realloc(cmd->args, remove_quotes(\
-		expand_var(ft_strdup(token->token), 0)));
+	{
+		size = size_double(cmd->args);
+		cmd->args = ft_realloc(cmd->args, expand_var(ft_strdup(token->token), 0));
+		if (!ft_strlen(cmd->args[size]))
+		{
+			free(cmd->args[size]);
+			cmd->args[size] = NULL;
+		}
+	}
 	else if (token->type == 1)
 		open_infile(cmd, token->token, remove_quotes(\
 		expand_var(ft_strdup(token->token), 0)), j);

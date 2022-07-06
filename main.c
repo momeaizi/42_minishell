@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 12:29:07 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:19:12 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_space(char *str)
 
 	i = -1;
 	while (str[++i])
-		if (str[i] != ' ')
+		if (str[i] != ' ' && str[i] != '\t')
 			return (0);
 	return (1);
 }
@@ -68,7 +68,6 @@ void	minishell(int flag, t_token ***tokens)
 		if (!g_global.doc_exit)
 			exec(g_global.cmds, NULL, 0);
 		clear_all(tokens);
-		system("leaks minishell");
 	}
 }
 
