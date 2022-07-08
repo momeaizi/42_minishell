@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:16:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 00:27:33 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/08 21:53:37 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	ft_exit(t_cmd *cmd)
 	{
 		if (!check_args_exit(cmd->args[1]))
 		{
-			cmd->error = 255;
 			put_error_two("exit", cmd->args[1], "numeric argument required");
+			exit(255);
 		}
 		else
 		{

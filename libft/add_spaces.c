@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:54:51 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 18:19:10 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/07/08 21:54:35 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ char	*add_spaces(char *line)
 
 	j = 0;
 	i = -1;
-	new_line = malloc(sizeof(char *) * ((count_redirection(line) * 2) + strlen(line) + 1));
+	new_line = malloc(sizeof(char *) * \
+	((count_redirection(line) * 2) + strlen(line) + 1));
 	while (line[++i])
 	{
 		cpy(line, new_line, &i, &j);
