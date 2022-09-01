@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 01:00:39 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:20:21 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,16 @@ void	replace_all_strings(char *str, char **strs, char new, char old);
 void	open_infile(t_cmd *cmd, char *token, char *infile, int index);
 void	replace_inside_quotes(char *str, char new, char old);
 void	put_error_two(char *str, char *idt, char *error);
+int		check_content(char *arg, char *dir_content);
 int		skip_quotes(char *line, int i, char quote);
 char	*get_cmd_path(t_cmd *cmd, char *cmd_name);
+int		check_start(char *arg, char *dir_content);
 char	*replace(char *str, char old, char new);
 char	*expand_var(char *str, char expand_all);
+int		check_end(char *arg, char *dir_content);
+int		check_all(char *arg, char *dir_content);
 void	split(char ***tokens, char *s, char c);
+char	**wildcards(char *arg, char **new_arg);
 char	*get_path(t_cmd *cmd, char *cmd_name);
 char	*join_readline_with_line(char *line);
 int		check_env_var(t_cmd *cmd, char *env);
@@ -97,8 +102,9 @@ int		is_duplicated(char *var);
 void	signal_handler(int sig);
 int		list_size(t_cmd *cmds);
 char	*unclosed_quotes(void);
-void	close_all(t_cmd *cmd);
 char	**copy_env(char **env);
+void	close_all(t_cmd *cmd);
+int		check_char(char *arg);
 char	*ft_getenv(char *var);
 void	create_list(int size);
 void	ft_export(t_cmd *cmd);

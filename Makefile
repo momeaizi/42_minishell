@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+         #
+#    By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 18:05:01 by momeaizi          #+#    #+#              #
-#    Updated: 2022/07/06 18:18:15 by momeaizi         ###   ########.fr        #
+#    Updated: 2022/08/30 15:06:34 by mskerba          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC =  main.c\
 	expanding/expander.c expanding/init.c expanding/utils.c\
 	quotes/is_there_any_quotes.c quotes/remove_quotes.c\
 	split/split.c split/clear.c split/count_tokens.c split/tokens_length.c split/replace.c\
+	wildcards/wildcards.c wildcards/wildcards_check.c\
 
 LDFLAGS= -L /Users/momeaizi/Desktop/brew/opt/readline/lib
 CPPFLAGS= -I /Users/momeaizi/Desktop/brew/opt/readline/include
@@ -30,7 +31,7 @@ OBJS:=$(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror $(HEADERS) #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror $(HEADERS) -fsanitize=address
 all: $(LIB) $(NAME)
 
 $(LIB):
