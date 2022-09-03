@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:03:52 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/05 23:41:18 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:05:53 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	dollar_counter(char *str, t_expand_var *exp_var)
 {
-	int		i;
+	int	i;
 
 	i = -1;
 	exp_var->count = 0;
@@ -24,15 +24,15 @@ void	dollar_counter(char *str, t_expand_var *exp_var)
 		if (str[i] == '\"')
 			exp_var->double_qoute = !exp_var->double_qoute;
 		i += ignore_quotes(str + i, exp_var);
-		if (str[i] == '$' && (ft_isalnum(str[i + 1]) \
-		|| str[i + 1] == '_' || str[i + 1] == '?'))
+		if (str[i] == '$' && (ft_isalnum(str[i + 1]) || str[i + 1] == '_'
+				|| str[i + 1] == '?'))
 			exp_var->count++;
 		else if (str[i] == '$' && str[i] == str[i + 1])
 			i++;
 	}
 }
 
-void	get_variable(t_env_var	*env_var, char expand_all)
+void	get_variable(t_env_var *env_var, char expand_all)
 {
 	char	*var;
 
@@ -57,9 +57,9 @@ void	get_variable(t_env_var	*env_var, char expand_all)
 
 void	replace_var_by_val(char *str, t_expand_var *exp_var)
 {
-	int		i;
-	int		j;
-	int		index;
+	int	i;
+	int	j;
+	int	index;
 
 	set_len(exp_var, &index, &i, &j);
 	if (!i)
@@ -67,19 +67,31 @@ void	replace_var_by_val(char *str, t_expand_var *exp_var)
 	while (str[++i])
 	{
 		is_quote(str[i], exp_var);
-		if (exp_var->expnd && str[i] == '$' && \
-		(ft_isalnum(str[i + 1]) || str[i + 1] == '_' || str[i + 1] == '?'))
+		if (exp_var->expnd && str[i] == '$' &&
+			(ft_isalnum(str[i + 1]) || str[i + 1] == '_' || str[i + 1] == '?'))
 		{
-			ft_strlcpy(exp_var->new_str + j, exp_var->env_var[index].val, \
-			exp_var->env_var[index].val_len + 1);
+			ft_strlcpy(exp_var->new_str + j, exp_var->env_var[index].val,
+					exp_var->env_var[index].val_len + 1);
 			i += exp_var->env_var[index].var_len;
-			j += exp_var->env_var[index].val_len ;
+			j += exp_var->env_var[index].val_len;
 			index++;
 		}
 		else
 			exp_var->new_str[j++] = exp_var->str[i];
 	}
 	exp_var->new_str[j] = 0;
+}
+
+int	get_var_len(char *str)
+{
+	int	i;
+
+	i = -1;
+	if (ft_isdigit(str[0]))
+		return (1);
+	while (ft_isalnum(str[++i]) || str[i] == '_')
+		;
+	return (i);
 }
 
 void	expander(char *str, t_expand_var *exp_var, char expand_all)
@@ -94,14 +106,12 @@ void	expander(char *str, t_expand_var *exp_var, char expand_all)
 		if (str[i] == '\"')
 			exp_var->double_qoute = !exp_var->double_qoute;
 		i += ignore_quotes(str + i, exp_var);
-		if (str[i] == '$' && (ft_isalnum(str[i + 1]) \
-		|| str[i + 1] == '_' || str[i + 1] == '?'))
+		if (str[i] == '$' && (ft_isalnum(str[i + 1]) || str[i + 1] == '_'
+				|| str[i + 1] == '?'))
 		{
-			exp_var->env_var[index].var_len = 0;
 			exp_var->env_var[index].var = &str[i] + 1;
-			while (ft_isalnum(str[++i]) || str[i] == '_')
-				exp_var->env_var[index].var_len++;
-			i--;
+			exp_var->env_var[index].var_len = get_var_len(&str[i] + 1);
+			i += exp_var->env_var[index].var_len;
 			get_variable(&exp_var->env_var[index], expand_all);
 			index++;
 		}

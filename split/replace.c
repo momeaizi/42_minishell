@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:46:38 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/27 11:57:24 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/03 09:40:01 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,13 @@ char	*replace(char *str, char old, char new)
 		if (str[i] == old)
 			str[i] = new;
 	return (str);
+}
+
+void	remove_tab(char *str)
+{
+	if (!str)
+		return ;		
+	replace_inside_quotes(str, -1, '\t');
+	replace(str, '\t', ' ');
+	replace_inside_quotes(str, '\t', -1);
 }

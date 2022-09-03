@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   wildcards.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:42:39 by mskerba           #+#    #+#             */
-/*   Updated: 2022/08/30 11:44:46 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/02 16:11:55 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include <dirent.h>
-#include <sys/types.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
+#include "../minishell.h"
 
 static char	*ft_strcpy(char	*dest, const char	*src)
 {
@@ -142,17 +137,17 @@ int	check_content(char *arg, char *dir_content)
 	return (0);	
 }
 
-char *wildcards(char *arg, char *path) //path is the $PWD
+char *wildcards(char *arg) //path is the $PWD
 {
 	struct	dirent *dir_content;
 	DIR		*current_dir;
 	char	*new_arg;
-	// char	*path;
+	char	*path;
 
-	// path = ft_getenv("PWD");
-	//protect null path
+	path = getcwd(NULL, 0);
+	// if (!path)
+	// 	return (NULL);
 	current_dir = opendir(path);
-	//permition denied
 	new_arg = ft_strdup("");
 	while (1)
 	{
@@ -163,16 +158,9 @@ char *wildcards(char *arg, char *path) //path is the $PWD
 		{
 			if(new_arg[0])
 				new_arg = ft_strjoin(new_arg, " ");
-			new_arg = ft_strjoin(new_arg,dir_content->d_name);
+			new_arg = ft_strjoin(new_arg,diqr_content->d_name);
 		}
 	}
 	closedir(current_dir);
 	return (new_arg);
-}
-
-int main(int c, char **v)
-{
-	(void)c;
-
-	printf("%s\n", wildcards(v[1], "/home/mskerba/Desktop/42_minishell"));
 }

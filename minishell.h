@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/08/30 15:20:21 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/03 09:40:22 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int		check_char(char *arg);
 char	*ft_getenv(char *var);
 void	create_list(int size);
 void	ft_export(t_cmd *cmd);
+void	remove_tab(char *str);
 char	*get_var(char *args);
 char	*get_val(char *args);
 t_token	***lexer(char *line);
