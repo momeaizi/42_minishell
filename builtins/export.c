@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 23:58:06 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 12:13:08 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:34:10 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ft_export(t_cmd *cmd)
 		val = get_val(cmd->args[i]);
 		if (cmd->args[i][0] == '=' || check_var(var, val))
 		{
-			cmd->error = 1;
+			cmd->error = 2;
 			put_error_two("export", cmd->args[i], "not a valid identifier");
 			free(var);
 			free(val);

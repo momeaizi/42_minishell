@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:54:46 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/03 01:28:54 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:40:20 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,17 @@ t_expand_var	*init(t_expand_var *exp_var, char *str, char expand_all)
 		exp_var->env_var = (t_env_var *)malloc((exp_var->count + 1) \
 		* sizeof(t_env_var));
 	return (exp_var);
+}
+
+void	clear_env(t_env_var *env_var)
+{
+	int	i;
+
+	i = -1;
+	while (env_var[++i].end)
+	{
+		free(env_var[i].val);
+		free(env_var[i].var);
+	}
+	free(env_var);
 }

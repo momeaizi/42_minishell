@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/03 09:40:22 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:40:56 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,17 @@ void	replace_all_strings(char *str, char **strs, char new, char old);
 void	open_infile(t_cmd *cmd, char *token, char *infile, int index);
 void	replace_inside_quotes(char *str, char new, char old);
 void	put_error_two(char *str, char *idt, char *error);
-int		check_content(char *arg, char *dir_content);
 int		skip_quotes(char *line, int i, char quote);
 char	*get_cmd_path(t_cmd *cmd, char *cmd_name);
-int		check_start(char *arg, char *dir_content);
+int		first_char(char *arg, char *dir_content);
 char	*replace(char *str, char old, char new);
+int		last_char(char *arg, char *dir_content);
 char	*expand_var(char *str, char expand_all);
-int		check_end(char *arg, char *dir_content);
-int		check_all(char *arg, char *dir_content);
+int		wildcards(char *arg, char *dir_content);
 void	split(char ***tokens, char *s, char c);
-char	**wildcards(char *arg, char **new_arg);
 char	*get_path(t_cmd *cmd, char *cmd_name);
 char	*join_readline_with_line(char *line);
+int		filter(char *arg, char *dir_content);
 int		check_env_var(t_cmd *cmd, char *env);
 void	change_env_var(char *var, char *val);
 void	exec(t_cmd *tmp, int *pid, int i);
@@ -91,6 +90,7 @@ int		is_there_any_quote(char *str);
 int		skip_space(char *line, int i);
 void	we_unset(char *var_to_unset);
 void	clear(char **paths, int j);
+int		is_all_asterisk(char *arg);
 void	clear_triple(char ***cmds);
 void	parser(t_token ***tokens);
 char	*remove_quotes(char *str);
@@ -100,11 +100,12 @@ int		size_double(char **cmds);
 char	*unclosed_brackets(void);
 int		is_duplicated(char *var);
 void	signal_handler(int sig);
+int		get_var_len(char *str);
 int		list_size(t_cmd *cmds);
 char	*unclosed_quotes(void);
 char	**copy_env(char **env);
+char	**asterisk(char *arg);
 void	close_all(t_cmd *cmd);
-int		check_char(char *arg);
 char	*ft_getenv(char *var);
 void	create_list(int size);
 void	ft_export(t_cmd *cmd);

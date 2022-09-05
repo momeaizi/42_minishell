@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/03 09:39:58 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:11:47 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_prompt(void)
 	g_global.doc_exit = 0;
 	if (!g_global.line)
 	{
-		write(1, "exit\n", 5);
+		//write(1, "exit\n", 5);
 		exit(g_global.exit_code);
 	}
 	remove_tab(g_global.line);

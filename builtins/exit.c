@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:16:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/08 21:53:37 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:19:59 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_args_exit(char *args)
 	i = -1;
 	while (args[++i])
 	{
-		if (ft_isdigit(args[i]) || (!i && args[i] == '-'))
+		if (ft_isdigit(args[i]) || (!i && (args[i] == '-' || args[i] == '+')))
 			continue ;
 		return (0);
 	}

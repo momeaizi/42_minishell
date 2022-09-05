@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:49:34 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/04 21:36:04 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:40:37 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,16 @@ int	ignore_quotes(char *str, t_expand_var *exp_var)
 	return (0);
 }
 
-void	clear_env(t_env_var *env_var)
+int	get_var_len(char *str)
 {
 	int	i;
 
 	i = -1;
-	while (env_var[++i].end)
-	{
-		free(env_var[i].val);
-		free(env_var[i].var);
-	}
-	free(env_var);
+	if (ft_isdigit(str[0]))
+		return (1);
+	while (ft_isalnum(str[++i]) || str[i] == '_')
+		;
+	return (i);
 }
 
 char	*is_empty(char *str)

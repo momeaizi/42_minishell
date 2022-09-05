@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:26:40 by mskerba           #+#    #+#             */
-/*   Updated: 2022/07/06 14:49:52 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:15:28 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	sig_handler(int sig)
 		if (!g_global.doc_exit)
 			write(1, "\n", 1);
 		g_global.exit_code = 1;
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
+		// rl_on_new_line();
+		// rl_replace_line("", 0);
+		// rl_redisplay();
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:46:38 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/03 09:40:01 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:36:24 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	replace_all_strings(char *str, char **strs, char new, char old)
 
 void	replace_inside_quotes(char *str, char new, char old)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (str[++i])
@@ -58,7 +58,7 @@ char	*replace(char *str, char old, char new)
 void	remove_tab(char *str)
 {
 	if (!str)
-		return ;		
+		return ;
 	replace_inside_quotes(str, -1, '\t');
 	replace(str, '\t', ' ');
 	replace_inside_quotes(str, '\t', -1);
