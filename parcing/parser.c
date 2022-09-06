@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/04 16:13:01 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/06 12:06:09 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,30 +72,27 @@ void	open_heredocs(t_cmd *tmp, t_token ***tokens)
 
 void	get_token_type(t_cmd *cmd, t_token *token, int j)
 {
-	int	size;
+	char	*arg;
 
+	arg = expand_var(ft_strdup(token->token), 0);
 	if (!token->type)
 	{
-		size = size_double(cmd->args);
-		cmd->args = ft_realloc(cmd->args, expand_var(\
-		ft_strdup(token->token), 0));
-		if (!ft_strlen(cmd->args[size]))
-		{
-			free(cmd->args[size]);
-			cmd->args[size] = NULL;
-		}
+		if (!ft_strlen(arg))
+			free(arg);
+		// else if (cmd->args[0] && !ft_strcmp(cmd->args[0], "export"))
+		// 	cmd->args = ft_realloc(cmd->args, remove_quotes(arg));
 		else
-			cmd->args[size] = remove_quotes(cmd->args[size]);
+			cmd->args = asterisk(arg, cmd->args, size_double(cmd->args));
 	}
 	else if (token->type == 1)
-		open_infile(cmd, token->token, \
-		remove_quotes(expand_var(ft_strdup(token->token), 0)), j);
+		open_infile(cmd, token->token, asterisk(\
+		arg, ft_calloc(1, sizeof(char *)), 0), j);
 	else if (token->type == 2)
-		open_outfile(cmd, token->token, remove_quotes(\
-		expand_var(ft_strdup(token->token), 0)), 0);
+		open_outfile(cmd, token->token, asterisk(\
+		arg, ft_calloc(1, sizeof(char *)), 0), 0);
 	else if (token->type == 3)
-		open_outfile(cmd, token->token, remove_quotes(\
-		expand_var(ft_strdup(token->token), 0)), 1);
+		open_outfile(cmd, token->token, asterisk(\
+		arg, ft_calloc(1, sizeof(char *)), 0), 1);
 }
 
 void	parser(t_token ***tokens)

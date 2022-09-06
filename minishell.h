@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/04 15:40:56 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:55:48 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,12 @@ typedef struct s_global
 
 t_global	g_global;
 
-void	open_outfile(t_cmd *cmd, char *token, char *outfile, int append);
+void	open_outfile(t_cmd *cmd, char *token, char **outfile, int append);
 void	replace_all_strings(char *str, char **strs, char new, char old);
-void	open_infile(t_cmd *cmd, char *token, char *infile, int index);
+void	open_infile(t_cmd *cmd, char *token, char **infile, int index);
 void	replace_inside_quotes(char *str, char new, char old);
 void	put_error_two(char *str, char *idt, char *error);
+char	**asterisk(char *arg, char **args, int size);
 int		skip_quotes(char *line, int i, char quote);
 char	*get_cmd_path(t_cmd *cmd, char *cmd_name);
 int		first_char(char *arg, char *dir_content);
@@ -90,8 +91,8 @@ int		is_there_any_quote(char *str);
 int		skip_space(char *line, int i);
 void	we_unset(char *var_to_unset);
 void	clear(char **paths, int j);
-int		is_all_asterisk(char *arg);
 void	clear_triple(char ***cmds);
+int		is_all_asterisk(char *arg);
 void	parser(t_token ***tokens);
 char	*remove_quotes(char *str);
 int		skip_brackets(char *line);
@@ -104,7 +105,6 @@ int		get_var_len(char *str);
 int		list_size(t_cmd *cmds);
 char	*unclosed_quotes(void);
 char	**copy_env(char **env);
-char	**asterisk(char *arg);
 void	close_all(t_cmd *cmd);
 char	*ft_getenv(char *var);
 void	create_list(int size);
