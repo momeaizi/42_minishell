@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/06 11:55:48 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/19 09:10:07 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	replace_all_strings(char *str, char **strs, char new, char old);
 void	open_infile(t_cmd *cmd, char *token, char **infile, int index);
 void	replace_inside_quotes(char *str, char new, char old);
 void	put_error_two(char *str, char *idt, char *error);
+void	new_minishell(char *line, t_token ***tokens);
 char	**asterisk(char *arg, char **args, int size);
 int		skip_quotes(char *line, int i, char quote);
 char	*get_cmd_path(t_cmd *cmd, char *cmd_name);
@@ -75,6 +76,7 @@ char	*replace(char *str, char old, char new);
 int		last_char(char *arg, char *dir_content);
 char	*expand_var(char *str, char expand_all);
 int		wildcards(char *arg, char *dir_content);
+void	minishell(int flag, t_token ***tokens);
 void	split(char ***tokens, char *s, char c);
 char	*get_path(t_cmd *cmd, char *cmd_name);
 char	*join_readline_with_line(char *line);
@@ -84,18 +86,19 @@ void	change_env_var(char *var, char *val);
 void	exec(t_cmd *tmp, int *pid, int i);
 int		*tokens_length(char *str, char c);
 void	put_error(char *str, char *error);
+int		skip_brackets(char *line, int i);
 char	**split_spaces(char *s, char c);
 int		count_tokens(char *str, char c);
 void	clear_tokens(t_token ***tokens);
 int		is_there_any_quote(char *str);
 int		skip_space(char *line, int i);
+void	clear_all(t_token ***tokens);
 void	we_unset(char *var_to_unset);
 void	clear(char **paths, int j);
 void	clear_triple(char ***cmds);
 int		is_all_asterisk(char *arg);
 void	parser(t_token ***tokens);
 char	*remove_quotes(char *str);
-int		skip_brackets(char *line);
 void	print_export(t_cmd *cmd);
 int		size_double(char **cmds);
 char	*unclosed_brackets(void);

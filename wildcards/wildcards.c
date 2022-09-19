@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcards.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:42:39 by mskerba           #+#    #+#             */
-/*   Updated: 2022/09/06 12:00:20 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/18 20:15:25 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	**asterisk(char *arg, char **args, int size)
 	if (!path)
 		return (ft_realloc(args, arg));
 	dir = opendir(path);
+	free(path);
 	if (dir < 0)
 		return (ft_realloc(args, arg));
 	while (1)
@@ -57,5 +58,6 @@ char	**asterisk(char *arg, char **args, int size)
 	replace(arg, -7, '*');
 	if (size == size_double(args))
 		return (ft_realloc(args, arg));
+	free(arg);
 	return (args);
 }

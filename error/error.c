@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:56:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 14:48:56 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:28:14 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_pipe(int *i)
 	if ((g_global.line[j] == '|' && j != *i + 1) || !g_global.line[j])
 	{
 		g_global.exit_code = 258;
-		write(2, "minishell: syntax error near unexpected token `|'\n", 50);
+		write(2, "minishell: syntax error near unexpected token `t'\n", 50);
 		return (0);
 	}
 	else if (g_global.line[*i + 1] == '|' && g_global.line[*i + 2] == '|')
@@ -39,7 +39,8 @@ int	check_and(int *i)
 
 	j = skip_space(g_global.line, *i);
 	j = skip_space(g_global.line, *i + 1);
-	if (g_global.line[*i + 1] != '&' || !g_global.line[j])
+	if (g_global.line[*i + 1] != '&' || !g_global.line[j] \
+	|| g_global.line[j] == ')' || g_global.line[j] == '|')
 	{
 		g_global.exit_code = 258;
 		write(2, "minishell: syntax error\n", 24);

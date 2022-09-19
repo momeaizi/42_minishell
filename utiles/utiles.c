@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:26:40 by mskerba           #+#    #+#             */
-/*   Updated: 2022/09/06 11:50:55 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/17 09:53:10 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	sig_handler(int sig)
 		if (!g_global.doc_exit)
 			write(1, "\n", 1);
 		g_global.exit_code = 1;
-		// rl_on_new_line();
+		rl_on_new_line();
 		// rl_replace_line("", 0);
-		// rl_redisplay();
+		rl_redisplay();
 	}
 }

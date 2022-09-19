@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   skip_car.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:25:14 by mskerba           #+#    #+#             */
-/*   Updated: 2022/06/27 08:00:20 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:33:32 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ int	skip_space(char *line, int i)
 	return (i);
 }
 
+int	skip_space2(char *line, int i)
+{
+	if (line[i] == ' ')
+		while (line[++i] && line[i] == ' ')
+			;
+	return (i);
+}
+
 int	skip_quotes(char *line, int i, char quote)
 {
 	if (line[i] != '\'' && line[i] != '\"')
@@ -28,3 +36,22 @@ int	skip_quotes(char *line, int i, char quote)
 			;
 	return (i);
 }
+
+int	skip_brackets(char *line, int i)
+{
+	int	j;
+
+	j = 1;
+	if (line[i] == '(')
+	{
+		while (line[++i] && j)
+		{
+			if (line[i] == '(')
+				j++;
+			if (line[i] == ')')
+				j--;
+		}
+	}
+	return (i);
+}
+

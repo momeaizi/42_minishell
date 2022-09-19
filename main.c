@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/06 11:31:19 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/19 14:50:11 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	clear_all(t_token ***tokens)
 {
 	clear_tokens(tokens);
 	clear_cmds();
-	free(g_global.line);
 }
 
 void	init_prompt(void)
@@ -43,6 +42,7 @@ void	init_prompt(void)
 	}
 	remove_tab(g_global.line);
 }
+
 
 void	minishell(int flag, t_token ***tokens)
 {
@@ -65,11 +65,8 @@ void	minishell(int flag, t_token ***tokens)
 			continue ;
 		}
 		g_global.line = add_spaces(g_global.line);
-		tokens = lexer(g_global.line);
-		parser(tokens);
-		if (!g_global.doc_exit)
-			exec(g_global.cmds, NULL, 0);
-		clear_all(tokens);
+		new_minishell(ft_strdup(g_global.line), tokens);
+		free(g_global.line);
 	}
 }
 

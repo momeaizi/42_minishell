@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 11:16:59 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/02 12:06:06 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:28:45 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,18 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		*ft_memmove(void *dst, const void *src, size_t len);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
-char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strjoin(char const *s1, char const *s2);
 void		*ft_memchr(const void *s, int c, size_t n);
 int			skip_quotes(char *line, int i, char quote);
 void		*ft_memset(void *b, int c, size_t len);
 void		*ft_calloc(size_t count, size_t size);
+char		*ft_strtrim(char *s1, char *set);
 char		**ft_realloc(char **strs, char *str);
 char		*ft_strrchr(const char *s, int c);
 char		*ft_strchr(const char *s, int c);
 void		ft_putendl_fd(char *s, int fd);
 int			skip_space(char *line, int i);
+int			skip_space2(char *line, int i);
 int			ft_strcmp(char *s1, char *s2);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);

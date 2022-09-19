@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:20:08 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/30 21:58:08 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:37:58 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	is_set(char c, char const *set)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char *s1, char *set)
 {
 	char	*str;
 	size_t	i;
@@ -49,11 +49,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str[i] = 0;
 	return (str);
 }
-
-/*int main(void)
-{
-    char    arr[] = "";
-    char    p = NULL;
-    printf("%s\n",ft_strtrim("acbaXXXb", "acb"));
-    printf("%p\n", p);
-}*/
