@@ -6,7 +6,7 @@
 /*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/19 14:50:11 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/19 21:17:41 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	init_prompt(void)
 	remove_tab(g_global.line);
 }
 
-
 void	minishell(int flag, t_token ***tokens)
 {
 	while (1)
@@ -65,7 +64,7 @@ void	minishell(int flag, t_token ***tokens)
 			continue ;
 		}
 		g_global.line = add_spaces(g_global.line);
-		new_minishell(ft_strdup(g_global.line), tokens);
+		parse_execute(ft_strdup(g_global.line), tokens);
 		free(g_global.line);
 	}
 }

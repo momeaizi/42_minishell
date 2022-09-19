@@ -6,7 +6,7 @@
 #    By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 18:05:01 by momeaizi          #+#    #+#              #
-#    Updated: 2022/09/18 17:03:58 by mskerba          ###   ########.fr        #
+#    Updated: 2022/09/19 21:18:37 by mskerba          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJS:=$(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror $(HEADERS) #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror $(HEADERS) -fsanitize=address
 all: $(LIB) $(NAME)
 
 $(LIB):

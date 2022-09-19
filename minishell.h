@@ -6,7 +6,7 @@
 /*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/19 09:10:07 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/19 21:18:15 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	replace_all_strings(char *str, char **strs, char new, char old);
 void	open_infile(t_cmd *cmd, char *token, char **infile, int index);
 void	replace_inside_quotes(char *str, char new, char old);
 void	put_error_two(char *str, char *idt, char *error);
-void	new_minishell(char *line, t_token ***tokens);
+void	parse_execute(char *line, t_token ***tokens);
 char	**asterisk(char *arg, char **args, int size);
 int		skip_quotes(char *line, int i, char quote);
 char	*get_cmd_path(t_cmd *cmd, char *cmd_name);
@@ -83,6 +83,7 @@ char	*join_readline_with_line(char *line);
 int		filter(char *arg, char *dir_content);
 int		check_env_var(t_cmd *cmd, char *env);
 void	change_env_var(char *var, char *val);
+char	*get_next_cmd(char *line, int type);
 void	exec(t_cmd *tmp, int *pid, int i);
 int		*tokens_length(char *str, char c);
 void	put_error(char *str, char *error);
@@ -104,6 +105,7 @@ int		size_double(char **cmds);
 char	*unclosed_brackets(void);
 int		is_duplicated(char *var);
 void	signal_handler(int sig);
+int		is_operator(char *line);
 int		get_var_len(char *str);
 int		list_size(t_cmd *cmds);
 char	*unclosed_quotes(void);
@@ -113,6 +115,7 @@ char	*ft_getenv(char *var);
 void	create_list(int size);
 void	ft_export(t_cmd *cmd);
 void	remove_tab(char *str);
+char	*get_cmd(char *line);
 char	*get_var(char *args);
 char	*get_val(char *args);
 t_token	***lexer(char *line);

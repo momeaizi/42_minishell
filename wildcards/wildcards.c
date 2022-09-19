@@ -6,7 +6,7 @@
 /*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:42:39 by mskerba           #+#    #+#             */
-/*   Updated: 2022/09/18 20:15:25 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/19 21:29:45 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,23 @@ int	wildcards(char *arg, char *dir_content)
 	return (0);
 }
 
-char	**asterisk(char *arg, char **args, int size)
+char	**function(DIR *dir, char *arg, char **args)
 {
 	struct dirent	*dir_content;
+
+	while (1)
+	{
+		dir_content = readdir(dir);
+		if (!dir_content)
+			break ;
+		if (wildcards(arg, dir_content->d_name))
+			args = ft_realloc(args, ft_strdup(dir_content->d_name));
+	}
+	return (args);
+}
+
+char	**asterisk(char *arg, char **args, int size)
+{
 	DIR				*dir;
 	char			*path;
 
@@ -46,14 +60,7 @@ char	**asterisk(char *arg, char **args, int size)
 	free(path);
 	if (dir < 0)
 		return (ft_realloc(args, arg));
-	while (1)
-	{
-		dir_content = readdir(dir);
-		if (!dir_content)
-			break ;
-		if (wildcards(arg, dir_content->d_name))
-			args = ft_realloc(args, ft_strdup(dir_content->d_name));
-	}
+	args = function(dir, arg, args);
 	closedir(dir);
 	replace(arg, -7, '*');
 	if (size == size_double(args))

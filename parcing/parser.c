@@ -6,7 +6,7 @@
 /*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:24:57 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/18 21:29:36 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/19 21:07:59 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	get_token_type(t_cmd *cmd, t_token *token, int j)
 	{
 		if (!ft_strlen(arg))
 			free(arg);
-		else if (cmd->args[0] && !ft_strcmp(cmd->args[0], "export") && ft_strchr(arg, '='))
+		else if (cmd->args[0] && !ft_strcmp(cmd->args[0], "export") \
+		&& ft_strchr(arg, '='))
 			cmd->args = ft_realloc(cmd->args, remove_quotes(arg));
 		else
 			cmd->args = asterisk(arg, cmd->args, size_double(cmd->args));
@@ -104,7 +105,6 @@ void	parser(t_token ***tokens)
 	tmp = g_global.cmds;
 	open_heredocs(tmp, tokens);
 	i = -1;
-
 	while (tokens[++i] && !g_global.doc_exit)
 	{
 		j = -1;
