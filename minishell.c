@@ -6,7 +6,7 @@
 /*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:02:59 by mskerba           #+#    #+#             */
-/*   Updated: 2022/09/19 20:40:14 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/19 20:48:20 by mskerba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,21 +84,19 @@ void	new_minishell(char *line, t_token ***tokens)
 	{
 		
 		tmp = ft_strtrim(line, " ");
-		printf("%s\n", tmp);
 		free(line);
 		line = tmp;
 		if(line[0] == '(' && line[ft_strlen(line) - 1] == ')')
 		{
-			line = line + 1;
 			line[ft_strlen(line) - 1] = 0;
 			pid = fork();
 			if (!pid)
 			{
-				new_minishell(ft_strdup(line),tokens);
+				new_minishell(ft_strdup(line + 1),tokens);
 				exit(g_global.exit_code);
 			}
 			waitpid(pid, &g_global.exit_code, 0);
-			return ;
+			break;
 		}
 		status = is_and_or(line);
 		if (status)
@@ -107,21 +105,18 @@ void	new_minishell(char *line, t_token ***tokens)
 			new_minishell(new_line, tokens);
 			line = extract_line(line, status);
 			if (status == 1 && g_global.exit_code == 0)
-				goto new_mini;
+				continue;
 			else if (status == 2 && g_global.exit_code != 0)
-				goto new_mini;
+				continue;
 			else
-			{
-				free(line);
-				return ;
-			}
+				break;
 		}
 		tokens = lexer(line);
 		parser(tokens);
 		if (!g_global.doc_exit)
 			exec(g_global.cmds, NULL, 0);
 		clear_all(tokens);
-		free(line);
-		return ;
+		break;
 	}
+	free(line);
 }
