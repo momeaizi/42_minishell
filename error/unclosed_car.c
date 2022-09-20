@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:31:18 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/07/06 14:49:00 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/20 21:58:19 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,29 @@ char	*unclosed_brackets(void)
 		return (new_line);
 	}
 	return (g_global.line);
+}
+
+int	valid_parentheses(char *line)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (line[++i])
+	{
+		i = skip_quotes(line, i, line[i]);
+		j  = skip_space(line, i);
+		if (line[j] == '(' && i && line[i] != '&' && line[i] != '|')
+		{
+			write(2, "minishell: syntax error\n", 24);
+			return (0);
+		}
+		if (line[i] == ')' && line[j] && line[j] != '&' && line[j] != '|')
+		{
+			write(2, "minishell: syntax error\n", 24);
+			return (0);
+		}
+		i  = j - 1;
+	}
+	return (1);
 }

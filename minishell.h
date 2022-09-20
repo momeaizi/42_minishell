@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/20 18:05:48 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:32:46 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int		count_tokens(char *str, char c);
 void	clear_tokens(t_token ***tokens);
 int		is_there_any_quote(char *str);
 int		skip_space(char *line, int i);
+int		valid_parentheses(char *line);
 void	clear_all(t_token ***tokens);
 void	we_unset(char *var_to_unset);
 void	clear(char **paths, int j);

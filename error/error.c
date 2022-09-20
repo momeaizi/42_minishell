@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:56:17 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/19 15:28:14 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/20 20:32:26 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int	check_error(void)
 	signal(SIGINT, &signal_handler);
 	g_global.line = unclosed_quotes();
 	if (!g_global.line)
+		return (0);
+	if (!valid_parentheses(g_global.line))
 		return (0);
 	g_global.line = unclosed_brackets();
 	if (!g_global.line)
