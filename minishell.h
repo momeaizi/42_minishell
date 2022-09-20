@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:59:43 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/19 21:18:15 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/20 18:05:48 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ char	*join_readline_with_line(char *line);
 int		filter(char *arg, char *dir_content);
 int		check_env_var(t_cmd *cmd, char *env);
 void	change_env_var(char *var, char *val);
-char	*get_next_cmd(char *line, int type);
 void	exec(t_cmd *tmp, int *pid, int i);
 int		*tokens_length(char *str, char c);
 void	put_error(char *str, char *error);
@@ -100,6 +99,7 @@ void	clear_triple(char ***cmds);
 int		is_all_asterisk(char *arg);
 void	parser(t_token ***tokens);
 char	*remove_quotes(char *str);
+char	*get_next_cmd(char *line);
 void	print_export(t_cmd *cmd);
 int		size_double(char **cmds);
 char	*unclosed_brackets(void);

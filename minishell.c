@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:02:59 by mskerba           #+#    #+#             */
-/*   Updated: 2022/09/20 16:58:20 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/20 18:06:01 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_cmd(char *line)
 	int		len;
 
 	len = skip_brackets(line, 0);
-	while (line[++len] && line[len] != '&' && line[len] != '|')
+	while (line[++len] && line[len] != '&' && !(line[len] == '|' && line[len + 1] == '|'))
 		;
 	new_line = malloc((len + 1) * sizeof(char));
 	if (!line)
@@ -29,24 +29,25 @@ char	*get_cmd(char *line)
 	return (new_line);
 }
 
-char	*get_next_cmd(char *line, int type)
+char	*get_next_cmd(char *line)
 {
-	int	i;
+	char	*new_line;
+	char	c;
+	int		i;
 
 	i = -1;
+	c = '|';
+	if (g_global.exit_code == 0)
+		c = '&';
 	while (line[++i])
 	{
 		i = skip_quotes(line, i, line[i]);
 		i = skip_brackets(line, i);
-		if (type == 1 && line[i] == '&')
+		if (line[i] == c && line[i + 1] == c)
 		{
+			new_line = ft_strdup(line + i + 2);
 			free(line);
-			return (ft_strdup(line + i + 2));
-		}
-		if (type == 2 && line[i] == '|')
-		{
-			free(line);
-			return (ft_strdup(line + i + 2));
+			return (new_line);
 		}
 	}
 	return (NULL);
@@ -99,14 +100,10 @@ void	parse_execute(char *line, t_token ***tokens)
 		{
 			new_line = get_cmd(line);
 			parse_execute(new_line, tokens);
-			line = get_next_cmd(line, status);
-			if (status == 1 && g_global.exit_code == 0)
-				continue ;
-			else if (status == 2 && g_global.exit_code != 0)
-				continue ;
-			else
-				while ()				
-			break;
+			line = get_next_cmd(line);
+			if (!line)
+				return;
+			continue;
 		}
 		tokens = lexer(line);
 		parser(tokens);
