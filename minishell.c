@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:02:59 by mskerba           #+#    #+#             */
-/*   Updated: 2022/09/19 21:17:49 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/20 16:58:20 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@ char	*get_cmd(char *line)
 	char	*new_line;
 	int		len;
 
-	len = -1;
-	while (line[++len] && line[len] == ' ')
-		;
-	line = line + len;
-	len = skip_brackets(line, 0) - 1;
+	len = skip_brackets(line, 0);
 	while (line[++len] && line[len] != '&' && line[len] != '|')
 		;
 	new_line = malloc((len + 1) * sizeof(char));
@@ -85,7 +81,7 @@ void	parse_execute(char *line, t_token ***tokens)
 		tmp = ft_strtrim(line, " ");
 		free(line);
 		line = tmp;
-		if (line[0] == '(' && line[ft_strlen(line) - 1] == ')')
+		if (line[0] == '(' && (int)ft_strlen(line) == skip_brackets(line, 0))
 		{
 			line[ft_strlen(line) - 1] = 0;
 			pid = fork();
@@ -109,7 +105,8 @@ void	parse_execute(char *line, t_token ***tokens)
 			else if (status == 2 && g_global.exit_code != 0)
 				continue ;
 			else
-				break ;
+				while ()				
+			break;
 		}
 		tokens = lexer(line);
 		parser(tokens);

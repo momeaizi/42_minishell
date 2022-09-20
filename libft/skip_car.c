@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   skip_car.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:25:14 by mskerba           #+#    #+#             */
-/*   Updated: 2022/09/19 21:05:54 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/20 15:55:16 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,4 @@ int	skip_brackets(char *line, int i)
 	}
 	return (i);
 }
+// (ls && ps) || df && (uname -a | grep 1337 || ls)
