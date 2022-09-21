@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 12:07:30 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/06/27 07:23:37 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:35:51 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@ static void	ft_strcpy(char	*dst, char	*src)
 {
 	size_t	i;
 
-	i = 0;
-	while (src[i])
-	{
+	i = -1;
+	while (src[++i])
 		dst[i] = src[i];
-		i++;
-	}
 	dst[i] = 0;
 }
 

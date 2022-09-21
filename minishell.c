@@ -6,7 +6,7 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:02:59 by mskerba           #+#    #+#             */
-/*   Updated: 2022/09/20 18:06:01 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:18:48 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*get_cmd(char *line)
 	int		len;
 
 	len = skip_brackets(line, 0);
-	while (line[++len] && line[len] != '&' && !(line[len] == '|' && line[len + 1] == '|'))
+	while (line[++len] && line[len] != '&' \
+	&& !(line[len] == '|' && line[len + 1] == '|'))
 		;
 	new_line = malloc((len + 1) * sizeof(char));
 	if (!line)
@@ -70,40 +71,43 @@ int	is_operator(char *line)
 	return (0);
 }
 
+int	fork_for_parenthesis(char *line, t_token ****tokens)
+{
+	int	pid;
+
+	if (line[0] == '(' && (int)ft_strlen(line) == skip_brackets(line, 0))
+	{
+		line[ft_strlen(line) - 1] = 0;
+		pid = fork();
+		if (!pid)
+		{
+			parse_execute(ft_strdup(line + 1), *tokens);
+			exit(g_global.exit_code);
+		}
+		waitpid(pid, &g_global.exit_code, 0);
+		g_global.exit_code = WEXITSTATUS(g_global.exit_code);
+		return (1);
+	}
+	return (0);
+}
+
 void	parse_execute(char *line, t_token ***tokens)
 {
 	char	*new_line;
-	int		status;
-	char	*tmp;
-	int		pid;
 
 	while (1)
 	{
-		tmp = ft_strtrim(line, " ");
-		free(line);
-		line = tmp;
-		if (line[0] == '(' && (int)ft_strlen(line) == skip_brackets(line, 0))
-		{
-			line[ft_strlen(line) - 1] = 0;
-			pid = fork();
-			if (!pid)
-			{
-				parse_execute(ft_strdup(line + 1), tokens);
-				exit(g_global.exit_code);
-			}
-			waitpid(pid, &g_global.exit_code, 0);
-			g_global.exit_code = WEXITSTATUS(g_global.exit_code);
+		line = ft_strtrim(line, " ");
+		if (fork_for_parenthesis(line, &tokens))
 			break ;
-		}
-		status = is_operator(line);
-		if (status)
+		if (is_operator(line))
 		{
 			new_line = get_cmd(line);
 			parse_execute(new_line, tokens);
 			line = get_next_cmd(line);
 			if (!line)
-				return;
-			continue;
+				return ;
+			continue ;
 		}
 		tokens = lexer(line);
 		parser(tokens);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mskerba <mskerba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:20:08 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/19 19:37:58 by mskerba          ###   ########.fr       */
+/*   Updated: 2022/09/21 11:12:50 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ char	*ft_strtrim(char *s1, char *set)
 	while (start <= end)
 		str[i++] = s1[start++];
 	str[i] = 0;
+	free(s1);
 	return (str);
 }

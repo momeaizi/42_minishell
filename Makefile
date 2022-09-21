@@ -6,7 +6,7 @@
 #    By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 18:05:01 by momeaizi          #+#    #+#              #
-#    Updated: 2022/09/20 18:05:31 by momeaizi         ###   ########.fr        #
+#    Updated: 2022/09/21 11:07:34 by momeaizi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,11 @@ SRC =  main.c\
 	split/split.c split/clear.c split/count_tokens.c split/tokens_length.c split/replace.c\
 	wildcards/wildcards.c wildcards/willdcards_check.c   minishell.c 
 
-LDFLAGS= -L /Users/mskerba/goinfre/.brew/opt/readline/lib
-CPPFLAGS= -I /Users/mskerba/goinfre/.brew/opt/readlin/include
+# LDFLAGS= -L /Users/$(USER)/goinfre/.brew/opt/readline/lib
+# CPPFLAGS= -I /Users/$(USER)/goinfre/.brew/opt/readlin/include
+
+LDFLAGS= -L /Users/momeaizi/Desktop/brew/opt/readline/lib
+CPPFLAGS= -I /Users/momeaizi/Desktop/brew/opt/readline/include
 
 NAME=minishell
 LIB=libft.a
@@ -31,15 +34,15 @@ OBJS:=$(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror $(HEADERS) -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror  -fsanitize=address
 all: $(LIB) $(NAME)
 
 $(LIB):
 	cd libft &&  make && make clean && mv $(LIB) ../
 
 
-$(NAME): $(OBJS) 
-	$(CC)  -lreadline $(CFLAGS) $(OBJS) -L. $(LIB) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC)  -lreadline  $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) $(OBJS) -L. $(LIB) -o $(NAME)
 
 clean :
 	rm -f $(OBJS) $(LIB)

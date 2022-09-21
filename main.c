@@ -6,22 +6,11 @@
 /*   By: momeaizi <momeaizi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:34:22 by momeaizi          #+#    #+#             */
-/*   Updated: 2022/09/20 14:46:57 by momeaizi         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:37:13 by momeaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_space(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		if (str[i] != ' ' && str[i] != '\t')
-			return (0);
-	return (1);
-}
 
 void	clear_all(t_token ***tokens)
 {
@@ -37,10 +26,13 @@ void	init_prompt(void)
 	g_global.doc_exit = 0;
 	if (!g_global.line)
 	{
-		// write(1, "exit\n", 5);
+		write(1, "exit\n", 5);
 		exit(g_global.exit_code);
 	}
+	if (ft_strlen(g_global.line))
+		add_history(g_global.line);
 	remove_tab(g_global.line);
+	g_global.line = ft_strtrim(g_global.line, " ");
 }
 
 void	minishell(int flag, t_token ***tokens)
@@ -48,9 +40,7 @@ void	minishell(int flag, t_token ***tokens)
 	while (1)
 	{
 		init_prompt();
-		if (ft_strlen(g_global.line))
-			add_history(g_global.line);
-		if (!ft_strlen(g_global.line) || is_space(g_global.line))
+		if (!ft_strlen(g_global.line))
 		{
 			free(g_global.line);
 			continue ;
@@ -60,6 +50,7 @@ void	minishell(int flag, t_token ***tokens)
 			dup2(g_global.fd, 0);
 		if (!flag)
 		{
+			g_global.exit_code = 258;
 			free(g_global.line);
 			continue ;
 		}
